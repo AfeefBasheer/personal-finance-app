@@ -16,4 +16,3 @@ const rawDataSchema = new mongoose.Schema({
 const RawData = mongoose.model("RawData", rawDataSchema);
 
 export default RawData;
-
