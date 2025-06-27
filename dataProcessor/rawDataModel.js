@@ -1,17 +1,19 @@
 import mongoose from "mongoose";
 
 const rawDataSchema = new mongoose.Schema({
-  companyName: String,
-  companyID: String,
-  sector:String,
-  financialYear:Number,
-  marketCapital:Number,
-  priceOfStock:Number,
-  profit:Number,
-  EPS:Number,
-  outstandingShares:Number,
+  companyName: { type: String, required: true },
+  companyID: { type: String, required: true },
+  sector: { type: String,required:true },
+  financialYear: { type: Number},
+  marketCapital: { type: Number },
+  stockPrice: { type: Number },
+  profit: { type: Number },
+  EPS: { type: Number },
+  equity: { type: Number },
+  outstandingShares: { type: Number },
 });
 
-const rawData = new mongoose.model('rawData',rawDataSchema)
+const RawData = mongoose.model("RawData", rawDataSchema);
 
-export default rawData
+export default RawData;
+
