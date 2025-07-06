@@ -6,9 +6,9 @@ const processedDataSchema = new mongoose.Schema(
     companyID: { type: String, required: true },
     sector: { type: String, required: true },
     financialYear: { type: Number,required:true },
-    debt: { type: Number },
-    EBIT: { type: Number },
-    capitalEmployed: { type: Number },
+    debt: Number,
+    EBIT: Number,
+    capitalEmployed: Number,
   },
   {
     timestamps: true,
