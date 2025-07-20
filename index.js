@@ -1,5 +1,6 @@
 import express from "express";
 import http from "http";
+import router from './src/router/router'
 
 const app = express();
 http.createServer(app);
