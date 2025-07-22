@@ -7,9 +7,6 @@ http.createServer(app);
 
 app.use("/", appRouter); // app using appRouter
 
-app.get("/health", (req, res) => {
-  res.send("The server is healthy");
-});
 app.listen(3000, () => {
   console.log("server running on port: 3000");
 });
