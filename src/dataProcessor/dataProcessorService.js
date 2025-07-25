@@ -1,33 +1,27 @@
-function getDebt(
+
+
+const getDebt = (
   currentLeasePayable,
   currentOtherFinancialLiabilities,
   nonCurrentLeasePayable,
   nonCurrentOtherFinancialLiabitlies
-) {
+) =>
   currentLeasePayable +
-    currentOtherFinancialLiabilities +
-    nonCurrentOtherFinancialLiabitlies +
-    nonCurrentLeasePayable;
-}
-function getEBIT(profit, interestIncome, interestExpense, tax) {
+  currentOtherFinancialLiabilities +
+  nonCurrentOtherFinancialLiabitlies +
+  nonCurrentLeasePayable;
+
+const getEBIT = (profit, interestIncome, interestExpense, tax) =>
   profit + tax + interestExpense - interestIncome;
-}
 
-function getCaptialEmployed(debt, equity) {
-  debt + equity;
-}
+const getCaptialEmployed = (debt, equity) => debt + equity;
 
-function getROCE(EBIT, captialEmployed) {
-  EBIT / captialEmployed;
-}
+const getROCE = (EBIT, captialEmployed) => EBIT / captialEmployed;
 
-function getPERatio(stockPrice, EPS) {
-  stockPrice / EPS;
-}
+const getPERatio = (stockPrice, EPS) => stockPrice/EPS;
 
 function processRawData(rawData) {
   let processedData = {};
-
   processedData.debt = getDebt(
     rawData.currentLeasePayable,
     rawData.currentOtherFinancialLiabilities,
@@ -48,6 +42,7 @@ function processRawData(rawData) {
     processedData.EBIT,
     processedData.captialEmployed
   );
-  processRawData.PE = getPERatio(rawData.stockPrice, rawData.EPS);
+  processedData.PE = getPERatio(rawData.stockPrice, rawData.EPS);
   return processedData;
 }
+
