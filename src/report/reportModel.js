@@ -7,7 +7,7 @@ const reportSchema = new mongoose.Schema(
     sector: { type: String, required: true },
     financialYear: { type: Number,required:true },
     debt: Number,
-    EBITDA: Number,
+    EBIT: Number,
     ROCE: Number,
     PE: Number,
   },

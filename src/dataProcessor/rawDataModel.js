@@ -12,6 +12,13 @@ const rawDataSchema = new mongoose.Schema(
     EPS: Number,
     equity: Number,
     outstandingShares: Number,
+    interestIncome:Number,
+    tax:Number,
+    interestExpense:Number,
+    currentLeasePayable:Number,
+    currentOtherFinancialLiabilities:Number,
+    nonCurrentLeasePayable:Number,
+    nonCurrentOtherFinancialLiabitlies:Number
   },
   {
     timestamps: true,
