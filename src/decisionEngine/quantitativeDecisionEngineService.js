@@ -8,16 +8,23 @@ function getQuantitativeDecision(processedData) {
     processedData.PE,
     quantitativeConstants.PE_sensitivity,
     quantitativeConstants.PE_limit,
-    quantitativeConstants.PE_scailing_factor
+    quantitativeConstants.PE_scailing_factor,
+    quantitativeConstants.maxScore,
+    quantitativeConstants.minPE,
+    quantitativeConstants.PE_lowestAllowedScore
   );
 
   quantitativeDecision.PE_assessment = getAssessment(
     "PE ratio",
-    quantitativeDecision.PEscore
+    quantitativeDecision.PEscore,
+    quantitativeConstants.excellentGradeThreshold,
+    quantitativeConstants.poorGradeThreshold
   );
   quantitativeDecision.ROCE_assessment = getAssessment(
     "ROCE ratio",
-    quantitativeDecision.ROCEscore
+    quantitativeDecision.ROCEscore,
+    quantitativeConstants.excellentGradeThreshold,
+    quantitativeConstants.poorGradeThreshold
   );
 
   return quantitativeDecision;
@@ -30,29 +37,39 @@ function getQuantitativeScore(
   PE,
   PE_sensitivity,
   PE_limit,
-  PE_scailing_factor
+  PE_scailing_factor,
+  maxScore,
+  minPE,
+  PE_lowestAllowedScore
 ) {
   let scores = {};
-  
+
   if (ROCE >= idealROCE) {
-    scores.ROCEscore = 5;
+    scores.ROCEscore = maxScore;
   } else {
-    scores.ROCEscore = (ROCE / idealROCE) * 5;
+    scores.ROCEscore = (ROCE / idealROCE) * maxScore;
   }
-  PE = Math.max(0,PE)
+  PE = Math.max(minPE, PE);
   if (PE > PE_limit) {
-    scores.PEscore = 0.05;
+    scores.PEscore = PE_lowestAllowedScore;
   } else {
     const diff = Math.abs(PE - idealPE);
-    scores.PEscore = 5 - PE_scailing_factor * Math.pow(diff, PE_sensitivity);
+    scores.PEscore =
+      maxScore - PE_scailing_factor * Math.pow(diff, PE_sensitivity);
   }
 
   scores.total = scores.ROCEscore + scores.PEscore;
   return scores;
 }
 
-function getAssessment(property, value) {
-  if (value <= 2) return "Company has poor " + property;
-  else if (value >= 4.5) return "Company has Excellent " + property;
-  else return "Company has good " + property; 
+function getAssessment(
+  property,
+  value,
+  excellentGradeThreshold,
+  poorGradeThreshold
+) {
+  if (value <= poorGradeThreshold) return "Company has poor " + property;
+  else if (value >= excellentGradeThreshold)
+    return "Company has Excellent " + property;
+  else return "Company has good " + property;
 }
