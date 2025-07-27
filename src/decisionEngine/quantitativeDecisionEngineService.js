@@ -6,7 +6,9 @@ function getQuantitativeDecision(processedData) {
     quantitativeConstants.idealPE,
     processedData.ROCE,
     processedData.PE,
-    quantitativeConstants.PE_factor
+    quantitativeConstants.PE_sensitivity,
+    quantitativeConstants.PE_limit,
+    quantitativeConstants.PE_scailing_factor
   );
 
   quantitativeDecision.PE_assessment = getAssessment(
@@ -21,20 +23,29 @@ function getQuantitativeDecision(processedData) {
   return quantitativeDecision;
 }
 
-function getQuantitativeScore(idealROCE, idealPE, ROCE, PE, PE_factor) {
+function getQuantitativeScore(
+  idealROCE,
+  idealPE,
+  ROCE,
+  PE,
+  PE_sensitivity,
+  PE_limit,
+  PE_scailing_factor
+) {
   let scores = {};
-
-  if (ROCE > idealROCE) scores.ROCEscore = 5;
-  else scores.ROCEscore = (ROCE / idealROCE) * 5;
-
-  if (PE >= 5 && PE <= 25) {
-    let diff = Math.abs(PE - idealPE);
-    scores.PEscore = 5 - (diff / PE_factor) * 5;
+  
+  if (ROCE >= idealROCE) {
+    scores.ROCEscore = 5;
   } else {
-    scores.PEscore = 1;
+    scores.ROCEscore = (ROCE / idealROCE) * 5;
   }
-
-  if (scores.PEscore < 0) scores.PEscore = 0;
+  PE = Math.max(0,PE)
+  if (PE > PE_limit) {
+    scores.PEscore = 0.05;
+  } else {
+    const diff = Math.abs(PE - idealPE);
+    scores.PEscore = 5 - PE_scailing_factor * Math.pow(diff, PE_sensitivity);
+  }
 
   scores.total = scores.ROCEscore + scores.PEscore;
   return scores;
@@ -43,5 +54,5 @@ function getQuantitativeScore(idealROCE, idealPE, ROCE, PE, PE_factor) {
 function getAssessment(property, value) {
   if (value <= 2) return "Company has poor " + property;
   else if (value >= 4.5) return "Company has Excellent " + property;
-  else if (value > 2) return "Company has good " + property;
+  else return "Company has good " + property; 
 }
