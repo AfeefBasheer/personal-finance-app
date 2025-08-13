@@ -1,11 +1,7 @@
-import dataProcessor from "../dataProcessor/dataProcessorService.js";
-import quantitativeDecisionEngine from "../decisionEngine/quantitativeDecisionEngineService.js";
 
-function generateReport(rawData) {
-  let processedData = dataProcessor.processRawData(rawData);
-  let quantitativeDecision =
-    quantitativeDecisionEngine.getQuantitativeDecision(processedData);
-  return { processedData, quantitativeDecision };
+function generateReport(rawData,processedData,quantitativeDecision) {
+    let report = {...rawData,...processedData,...quantitativeDecision}
+    return report
 }
 
 export default generateReport;
