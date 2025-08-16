@@ -1,7 +1,5 @@
+import Report from './reportModel'
+function generateReport(rawData,processedData,quantitativeDecision) {return new Report({...rawData,...processedData,...quantitativeDecision})}
 
-function generateReport(rawData,processedData,quantitativeDecision) {
-    let report = {...rawData,...processedData,...quantitativeDecision}
-    return report
-}
 
 export default generateReport;
