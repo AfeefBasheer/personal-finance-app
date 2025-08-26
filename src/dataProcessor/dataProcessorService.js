@@ -46,3 +46,4 @@ function processRawData(rawData) {
   return processedData;
 }
 
+export default {processRawData}

@@ -74,3 +74,5 @@ function getAssessment(
     return  "Company's "+property+" is Excellent";
   else return "Company's "+property+" is Good";
 }
+
+export default {getQuantitativeDecision}
