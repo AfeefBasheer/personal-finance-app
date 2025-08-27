@@ -2,10 +2,10 @@ import mongoose from "mongoose";
 
 const rawDataSchema = new mongoose.Schema(
   {
-    companyName: { type: String, required: true },
-    companyID: { type: String, required: true },
-    sector: { type: String, required: true },
-    financialYear: { type: Number, required: true },
+    companyName: { type: String},
+    companyID: { type: String},
+    sector: { type: String },
+    financialYear: { type: Number},
     marketCapital: Number,
     stockPrice: Number,
     profit: Number,

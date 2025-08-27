@@ -2,13 +2,16 @@ import mongoose from "mongoose";
 
 const database = async () => {
   try {
-    await mongoose.connect("mongodb://localhost:27017/FinanceApp");
+    console.log("Database called");
+    await mongoose.connect("mongodb://127.0.0.1:27017/FinanceApp", {
+      useNewUrlParser: true,
+      useUnifiedTopology: true,
+    });
     console.log("MongoDB Connection Successful");
   } catch (e) {
     console.error("MongoDB Connection Failed", e);
-    process.exit(1)
+    process.exit(1);
   }
 };
-export default database
 
-
+export default database;
