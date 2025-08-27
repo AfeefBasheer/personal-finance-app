@@ -1,4 +1,8 @@
+import dataProcessorRepository from './dataProcessorRepository.js'
 
+async function addRawData(rawData){
+  return await dataProcessorRepository.createNewRawData(rawData)
+}
 
 const getDebt = (
   currentLeasePayable,
@@ -46,4 +50,7 @@ function processRawData(rawData) {
   return processedData;
 }
 
-export default {processRawData}
+export default {
+  processRawData,
+  addRawData
+}
