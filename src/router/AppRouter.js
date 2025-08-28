@@ -3,7 +3,7 @@ import dataProcessorService from "../dataProcessor/dataProcessorService.js";
 import { Query } from "mongoose";
 const Router = express.Router()
 
-Router.post("/getrawdata", async (req, res) => {
+Router.post("/rawdata", async (req, res) => {
   let response = await dataProcessorService.addRawData({...req.query})
   res.send(response)
   console.log(response)
