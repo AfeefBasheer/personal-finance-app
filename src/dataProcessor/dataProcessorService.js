@@ -1,11 +1,7 @@
 import dataProcessorRepository from "./dataProcessorRepository.js";
 
 async function addRawData(rawData) {
-  try {
-    return await dataProcessorRepository.createNewRawData(rawData);
-  } catch (err) {
-    console.log(err + " - dataProcessorService");
-  }
+  return await dataProcessorRepository.createNewRawData(rawData);
 }
 
 const getDebt = (
