@@ -1,4 +1,8 @@
+import dataProcessorRepository from "./dataProcessorRepository.js";
 
+async function addRawData(rawData) {
+  return await dataProcessorRepository.createNewRawData(rawData);
+}
 
 const getDebt = (
   currentLeasePayable,
@@ -18,7 +22,7 @@ const getCaptialEmployed = (debt, equity) => debt + equity;
 
 const getROCE = (EBIT, captialEmployed) => EBIT / captialEmployed;
 
-const getPERatio = (stockPrice, EPS) => stockPrice/EPS;
+const getPERatio = (stockPrice, EPS) => stockPrice / EPS;
 
 function processRawData(rawData) {
   let processedData = {};
@@ -46,4 +50,7 @@ function processRawData(rawData) {
   return processedData;
 }
 
-export default {processRawData}
+export default {
+  processRawData,
+  addRawData,
+};
