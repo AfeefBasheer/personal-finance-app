@@ -8,6 +8,15 @@ async function createNewRawData(rawData) {
   }
 }
 
+async function readAllRawData(rawData) {
+  try {
+    return (await rawDataModel.find())
+  } catch (err) {
+    console.log(err + " - findNewRawData() | dataProcessorRepository");
+  }
+}
+
 export default {
   createNewRawData,
+  readAllRawData,
 };
