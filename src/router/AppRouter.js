@@ -10,4 +10,10 @@ Router.post("/rawdata", async (req, res) => {
 
 });
 
+Router.get("/rawdata", async (req, res) => {
+  let response = await dataProcessorService.getAllRawData();
+  if (!response) res.status(500).send();
+  else res.status(201).send(response);
+});
+
 export default Router;
