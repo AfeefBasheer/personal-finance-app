@@ -4,6 +4,10 @@ async function addRawData(rawData) {
   return await dataProcessorRepository.createNewRawData(rawData);
 }
 
+async function getAllRawData(rawData) {
+  return await dataProcessorRepository.getAllRawData(rawData);
+}
+
 const getDebt = (
   currentLeasePayable,
   currentOtherFinancialLiabilities,
@@ -53,4 +57,5 @@ function processRawData(rawData) {
 export default {
   processRawData,
   addRawData,
+  getAllRawData,
 };
