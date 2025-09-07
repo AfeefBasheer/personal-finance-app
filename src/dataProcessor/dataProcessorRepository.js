@@ -18,5 +18,5 @@ async function getAllRawData(rawData) {
 
 export default {
   createNewRawData,
-  readAllRawData,
+  getAllRawData,
 };

@@ -5,7 +5,7 @@ async function addRawData(rawData) {
 }
 
 async function getAllRawData(rawData) {
-  return await dataProcessorRepository.readAllRawData(rawData);
+  return await dataProcessorRepository.getAllRawData(rawData);
 }
 
 const getDebt = (
