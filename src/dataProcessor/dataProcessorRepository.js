@@ -8,7 +8,7 @@ async function createNewRawData(rawData) {
   }
 }
 
-async function getAllRawData(rawData) {
+async function getAllRawData() {
   try {
     return await rawDataModel.find()
   } catch (err) {
