@@ -7,13 +7,18 @@ Router.post("/rawdata", async (req, res) => {
   let response = await dataProcessorService.addRawData(req.body);
   if (!response) res.status(500).send();
   else res.status(201).send(response);
-
 });
 
 Router.get("/rawdata", async (req, res) => {
   let response = await dataProcessorService.getAllRawData();
   if (!response) res.status(500).send();
   else res.status(201).send(response);
+});
+
+Router.get("/rawdata/:id", async (req, res) => {
+  let response = await dataProcessorService.getRawDataById(req.params.id);
+  if (!response) res.status(404).send({});
+  else res.status(200).send(response);
 });
 
 export default Router;

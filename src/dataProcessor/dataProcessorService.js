@@ -7,7 +7,9 @@ async function addRawData(rawData) {
 async function getAllRawData(rawData) {
   return await dataProcessorRepository.getAllRawData(rawData);
 }
-
+async function getRawDataById(id){
+  return await dataProcessorRepository.getRawDataById(id)
+}
 const getDebt = (
   currentLeasePayable,
   currentOtherFinancialLiabilities,
@@ -58,4 +60,5 @@ export default {
   processRawData,
   addRawData,
   getAllRawData,
+  getRawDataById,
 };

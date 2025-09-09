@@ -10,13 +10,22 @@ async function createNewRawData(rawData) {
 
 async function getAllRawData() {
   try {
-    return await rawDataModel.find()
+    return await rawDataModel.find();
   } catch (err) {
     console.log(err + " - getallRawData() | dataProcessorRepository");
+  }
+}
+
+async function getRawDataById(id) {
+  try {
+    return await rawDataModel.findOne({ companyID: id });
+  } catch (err) {
+    console.log(err + " - getRawDataById() | dataProcessorRepository");
   }
 }
 
 export default {
   createNewRawData,
   getAllRawData,
+  getRawDataById,
 };
