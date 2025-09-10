@@ -24,8 +24,18 @@ async function getRawDataByCompanyId(companyId) {
   }
 }
 
+async function deleteAllRawData(){
+  try {
+    return await rawDataModel.deleteMany();
+  } catch (err) {
+    console.log(err + " - getRawDataByCompanyId() | dataProcessorRepository");
+  }
+}
+
+
 export default {
   createNewRawData,
   getAllRawData,
   getRawDataByCompanyId,
+  deleteAllRawData
 };

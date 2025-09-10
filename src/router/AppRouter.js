@@ -21,4 +21,10 @@ Router.get("/rawdata/:id", async (req, res) => {
   else res.status(200).send(response);
 });
 
+Router.delete("/rawdata",async(req,res)=>{
+  let response = await dataProcessorService.deleteAllRawData();
+  if (!response) res.status(500).send();
+  else res.status(204).send(response);
+})
+
 export default Router;
