@@ -16,16 +16,16 @@ async function getAllRawData() {
   }
 }
 
-async function getRawDataById(id) {
+async function getRawDataByCompanyId(companyId) {
   try {
-    return await rawDataModel.findOne({ companyID: id });
+    return await rawDataModel.findOne({ companyID: companyId });
   } catch (err) {
-    console.log(err + " - getRawDataById() | dataProcessorRepository");
+    console.log(err + " - getRawDataByCompanyId() | dataProcessorRepository");
   }
 }
 
 export default {
   createNewRawData,
   getAllRawData,
-  getRawDataById,
+  getRawDataByCompanyId,
 };
