@@ -32,7 +32,7 @@ async function deleteAllRawData(){
   }
 }
 
-async function deleteRawDataById(companyId){
+async function deleteRawDataByCompanyId(companyId){
     try {
     return await rawDataModel.deleteOne({companyID:companyId});
   } catch (err) {
@@ -45,5 +45,5 @@ export default {
   getAllRawData,
   getRawDataByCompanyId,
   deleteAllRawData,
-  deleteRawDataById,
+  deleteRawDataByCompanyId,
 };
