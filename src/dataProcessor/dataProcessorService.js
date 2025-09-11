@@ -1,21 +1,28 @@
 import dataProcessorRepository from "./dataProcessorRepository.js";
 
 async function addRawData(rawData) {
-  return await dataProcessorRepository.createNewRawData(rawData);
+  const savedRawData = await dataProcessorRepository.createNewRawData(rawData);
+  let processedData = processRawData(savedRawData);
+  const savedProcessedData = await addProcessedData(processedData);
+  return savedRawData;
 }
-
+async function addProcessedData(processedData) {
+  return await dataProcessorRepository.createNewProcessedData(processedData);
+}
 async function getAllRawData(rawData) {
   return await dataProcessorRepository.getAllRawData(rawData);
 }
-async function getRawDataByCompanyId(companyId){
-  return await dataProcessorRepository.getRawDataByCompanyId(companyId)
+async function getRawDataByCompanyId(companyId) {
+  return await dataProcessorRepository.getRawDataByCompanyId(companyId);
 }
-async function deleteAllRawData(){
-  return await dataProcessorRepository.deleteAllRawData()
+async function deleteAllRawData() {
+  return await dataProcessorRepository.deleteAllRawData();
 }
-
-async function deleteRawDataByCompanyId(companyId){
-  return await dataProcessorRepository.deleteRawDataByCompanyId(companyId)
+async function deleteRawDataByCompanyId(companyId) {
+  return await dataProcessorRepository.deleteRawDataByCompanyId(companyId);
+}
+async function getAllProcessedData() {
+  return await dataProcessorRepository.getAllProcessedData();
 }
 const getDebt = (
   currentLeasePayable,
@@ -39,6 +46,12 @@ const getPERatio = (stockPrice, EPS) => stockPrice / EPS;
 
 function processRawData(rawData) {
   let processedData = {};
+
+  processedData.companyName = rawData.companyName;
+  processedData.companyID = rawData.companyID;
+  processedData.sector = rawData.sector;
+  processedData.financialYear = rawData.financialYear;
+
   processedData.debt = getDebt(
     rawData.currentLeasePayable,
     rawData.currentOtherFinancialLiabilities,
@@ -70,4 +83,5 @@ export default {
   getRawDataByCompanyId,
   deleteAllRawData,
   deleteRawDataByCompanyId,
+  getAllProcessedData,
 };

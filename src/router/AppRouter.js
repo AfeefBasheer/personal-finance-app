@@ -16,20 +16,30 @@ Router.get("/rawdata", async (req, res) => {
 });
 
 Router.get("/rawdata/:id", async (req, res) => {
-  let response = await dataProcessorService.getRawDataByCompanyId(req.params.id);
+  let response = await dataProcessorService.getRawDataByCompanyId(
+    req.params.id
+  );
   if (!response) res.status(404).send(null);
   else res.status(200).send(response);
 });
 
-Router.delete("/rawdata",async(req,res)=>{
+Router.delete("/rawdata", async (req, res) => {
   let response = await dataProcessorService.deleteAllRawData();
   if (!response) res.status(500).send();
   else res.status(204).send(response);
-})
+});
 
-Router.delete("/rawdata/:id",async(req,res)=>{
-  let response = await dataProcessorService.deleteRawDataByCompanyId(req.params.id);
+Router.delete("/rawdata/:id", async (req, res) => {
+  let response = await dataProcessorService.deleteRawDataByCompanyId(
+    req.params.id
+  );
   if (!response) res.status(500).send();
   else res.status(200).send(response);
-})
+});
+
+Router.get("/processeddata", async (req, res) => {
+  let response = await dataProcessorService.getAllProcessedData();
+  if (!response) res.status(500).send();
+  else res.status(200).send(response);
+});
 export default Router;

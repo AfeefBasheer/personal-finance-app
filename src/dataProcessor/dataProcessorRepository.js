@@ -1,8 +1,9 @@
 import rawDataModel from "./rawDataModel.js";
+import processedDataModel from "./processedDataModel.js";
 
 async function createNewRawData(rawData) {
   try {
-    return (await rawDataModel.create(rawData))._id;
+    return await rawDataModel.create(rawData);
   } catch (err) {
     console.log(err + " - createNewRawData() | dataProcessorRepository");
   }
@@ -16,6 +17,14 @@ async function getAllRawData() {
   }
 }
 
+async function createNewProcessedData(processedData) {
+  try {
+    return await processedDataModel.create(processedData);
+  } catch (err) {
+    console.log(err + " - createNewProcessedData() | dataProcessorRepository");
+  }
+}
+
 async function getRawDataByCompanyId(companyId) {
   try {
     return await rawDataModel.findOne({ companyID: companyId });
@@ -24,7 +33,7 @@ async function getRawDataByCompanyId(companyId) {
   }
 }
 
-async function deleteAllRawData(){
+async function deleteAllRawData() {
   try {
     return await rawDataModel.deleteMany();
   } catch (err) {
@@ -32,11 +41,21 @@ async function deleteAllRawData(){
   }
 }
 
-async function deleteRawDataByCompanyId(companyId){
-    try {
-    return await rawDataModel.deleteOne({companyID:companyId});
+async function deleteRawDataByCompanyId(companyId) {
+  try {
+    return await rawDataModel.deleteOne({ companyID: companyId });
   } catch (err) {
-    console.log(err + " - deleteRawDataByCompanyId() | dataProcessorRepository");
+    console.log(
+      err + " - deleteRawDataByCompanyId() | dataProcessorRepository"
+    );
+  }
+}
+
+async function getAllProcessedData() {
+  try {
+    return await processedDataModel.find();
+  } catch (err) {
+    console.log(err + " - getAllProcessedData() | dataProcessorRepository");
   }
 }
 
@@ -46,4 +65,6 @@ export default {
   getRawDataByCompanyId,
   deleteAllRawData,
   deleteRawDataByCompanyId,
+  getAllProcessedData,
+  createNewProcessedData,
 };
