@@ -1,7 +1,7 @@
 import express from "express";
 import http from "http";
 import database from "./src/database/database.js";
-import appRouter from "./src/router/AppRouter.js";
+import appRouter from "./src/router/applicationRouter.js";
 
 const app = express();
 const portNumber = 8080;
