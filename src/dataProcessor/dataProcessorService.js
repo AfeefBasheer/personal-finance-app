@@ -3,7 +3,7 @@ import dataProcessorRepository from "./dataProcessorRepository.js";
 async function addRawData(rawData) {
   const savedRawData = await dataProcessorRepository.createNewRawData(rawData);
   let processedData = processRawData(savedRawData);
-  const savedProcessedData = await addProcessedData(processedData);
+  await addProcessedData(processedData);
   return savedRawData;
 }
 async function addProcessedData(processedData) {
