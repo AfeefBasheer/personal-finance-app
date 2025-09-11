@@ -24,6 +24,9 @@ async function deleteRawDataByCompanyId(companyId) {
 async function getAllProcessedData() {
   return await dataProcessorRepository.getAllProcessedData();
 }
+async function getProcessedDataByCompanyId(companyId) {
+  return await dataProcessorRepository.getProcessedDataByCompanyId(companyId);
+}
 const getDebt = (
   currentLeasePayable,
   currentOtherFinancialLiabilities,
@@ -84,4 +87,5 @@ export default {
   deleteAllRawData,
   deleteRawDataByCompanyId,
   getAllProcessedData,
+  getProcessedDataByCompanyId,
 };
