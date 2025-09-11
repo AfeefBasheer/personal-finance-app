@@ -32,10 +32,18 @@ async function deleteAllRawData(){
   }
 }
 
+async function deleteRawDataByCompanyId(companyId){
+    try {
+    return await rawDataModel.deleteOne({companyID:companyId});
+  } catch (err) {
+    console.log(err + " - deleteRawDataByCompanyId() | dataProcessorRepository");
+  }
+}
 
 export default {
   createNewRawData,
   getAllRawData,
   getRawDataByCompanyId,
-  deleteAllRawData
+  deleteAllRawData,
+  deleteRawDataByCompanyId,
 };
