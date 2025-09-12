@@ -8,4 +8,13 @@ Router.get("/processeddata", async (req, res) => {
   if (!response) res.status(500).send();
   else res.status(200).send(response);
 });
+
+Router.get("/processeddata/:id", async (req, res) => {
+  let response = await dataProcessorService.getProcessedDataByCompanyId(
+    req.params.id
+  );
+  if (!response) res.status(404).send();
+  else res.status(200).send(response);
+});
+
 export default Router;

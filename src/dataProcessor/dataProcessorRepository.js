@@ -59,6 +59,16 @@ async function getAllProcessedData() {
   }
 }
 
+async function getProcessedDataByCompanyId(companyId) {
+  try {
+    return await processedDataModel.findOne({ companyID: companyId });
+  } catch (err) {
+    console.logo(
+      err + " - getProcessedDataByCompanyId | dataProcessorRepository"
+    );
+  }
+}
+
 export default {
   createNewRawData,
   getAllRawData,
@@ -67,4 +77,5 @@ export default {
   deleteRawDataByCompanyId,
   getAllProcessedData,
   createNewProcessedData,
+  getProcessedDataByCompanyId,
 };
