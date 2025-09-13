@@ -1,10 +1,10 @@
-import processedDataRouter from "./processedDataRouter.js";
-import rawDataRouter from "./rawDataRouter.js"
+import DataRouter from "../data/router/DataRouter.js";
+import rawDataRouter from "../data/router/rawDataRouter.js"
 import express from "express"
 
 const appRouter = express.Router()
 
 appRouter.use("/",rawDataRouter)
-appRouter.use("/",processedDataRouter)
+appRouter.use("/",DataRouter)
 
 export default appRouter

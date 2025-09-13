@@ -1,6 +1,6 @@
 import mongoose from "mongoose";
 
-const processedDataSchema = new mongoose.Schema(
+const DataSchema = new mongoose.Schema(
   {
     companyName: { type: String, required: true },
     companyID: { type: String, required: true },
@@ -17,4 +17,4 @@ const processedDataSchema = new mongoose.Schema(
   }
 );
 
-export default mongoose.model("ProcessedData", processedDataSchema);
+export default mongoose.model("Data", DataSchema);
