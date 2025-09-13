@@ -1,31 +1,13 @@
-import dataProcessorRepository from "./dataProcessorRepository.js";
+import dataRepository from "./dataRepository.js";
 
-async function addRawData(rawData) {
-  const savedRawData = await dataProcessorRepository.createNewRawData(rawData);
-  let processedData = processRawData(savedRawData);
-  await addProcessedData(processedData);
-  return savedRawData;
-}
 async function addProcessedData(processedData) {
-  return await dataProcessorRepository.createNewProcessedData(processedData);
-}
-async function getAllRawData(rawData) {
-  return await dataProcessorRepository.getAllRawData(rawData);
-}
-async function getRawDataByCompanyId(companyId) {
-  return await dataProcessorRepository.getRawDataByCompanyId(companyId);
-}
-async function deleteAllRawData() {
-  return await dataProcessorRepository.deleteAllRawData();
-}
-async function deleteRawDataByCompanyId(companyId) {
-  return await dataProcessorRepository.deleteRawDataByCompanyId(companyId);
+  return await dataRepository.createNewProcessedData(processedData);
 }
 async function getAllProcessedData() {
-  return await dataProcessorRepository.getAllProcessedData();
+  return await dataRepository.getAllProcessedData();
 }
 async function getProcessedDataByCompanyId(companyId) {
-  return await dataProcessorRepository.getProcessedDataByCompanyId(companyId);
+  return await dataRepository.getProcessedDataByCompanyId(companyId);
 }
 const getDebt = (
   currentLeasePayable,
@@ -81,11 +63,7 @@ function processRawData(rawData) {
 
 export default {
   processRawData,
-  addRawData,
-  getAllRawData,
-  getRawDataByCompanyId,
-  deleteAllRawData,
-  deleteRawDataByCompanyId,
   getAllProcessedData,
   getProcessedDataByCompanyId,
+  addProcessedData
 };
