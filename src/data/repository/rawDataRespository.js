@@ -1,4 +1,4 @@
-import rawDataModel from "./rawDataModel.js";
+import rawDataModel from "../model/rawDataModel.js";
 
 async function createNewRawData(rawData) {
   try {

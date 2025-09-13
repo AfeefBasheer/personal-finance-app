@@ -1,4 +1,4 @@
-import rawDataRepository from "./rawDataRespository.js";
+import rawDataRepository from "../repository/rawDataRespository.js";
 import dataService from "./dataService.js";
 
 async function addRawData(rawData) {

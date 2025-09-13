@@ -1,4 +1,4 @@
-import dataRepository from "./dataRepository.js";
+import dataRepository from "../repository/dataRepository.js";
 
 async function addProcessedData(processedData) {
   return await dataRepository.createNewProcessedData(processedData);

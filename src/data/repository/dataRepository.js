@@ -1,4 +1,4 @@
-import dataModel from './dataModel.js'
+import dataModel from '../model/dataModel.js'
 
 async function createNewProcessedData(processedData) {
   try {

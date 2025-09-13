@@ -1,5 +1,5 @@
-import rawDataService from "../data/rawDataService.js";
 import express from "express";
+import rawDataService from '../data/service/rawDataService.js'
 
 const Router = express.Router();
 
@@ -16,9 +16,7 @@ Router.get("/rawdata", async (req, res) => {
 });
 
 Router.get("/rawdata/:id", async (req, res) => {
-  let response = await rawDataService.getRawDataByCompanyId(
-    req.params.id
-  );
+  let response = await rawDataService.getRawDataByCompanyId(req.params.id);
   if (!response) res.status(404).send(null);
   else res.status(200).send(response);
 });
@@ -30,9 +28,7 @@ Router.delete("/rawdata", async (req, res) => {
 });
 
 Router.delete("/rawdata/:id", async (req, res) => {
-  let response = await rawDataService.deleteRawDataByCompanyId(
-    req.params.id
-  );
+  let response = await rawDataService.deleteRawDataByCompanyId(req.params.id);
   if (!response) res.status(500).send();
   else res.status(200).send(response);
 });
