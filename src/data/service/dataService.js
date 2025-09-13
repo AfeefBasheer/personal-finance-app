@@ -1,13 +1,13 @@
 import dataRepository from "../repository/dataRepository.js";
 
-async function addProcessedData(processedData) {
-  return await dataRepository.createNewProcessedData(processedData);
+async function addData(data) {
+  return await dataRepository.createNewData(data);
 }
-async function getAllProcessedData() {
-  return await dataRepository.getAllProcessedData();
+async function getAllData() {
+  return await dataRepository.getAllData();
 }
-async function getProcessedDataByCompanyId(companyId) {
-  return await dataRepository.getProcessedDataByCompanyId(companyId);
+async function getDataByCompanyId(companyId) {
+  return await dataRepository.getDataByCompanyId(companyId);
 }
 const getDebt = (
   currentLeasePayable,
@@ -30,40 +30,40 @@ const getROCE = (EBIT, captialEmployed) => EBIT / captialEmployed;
 const getPERatio = (stockPrice, EPS) => stockPrice / EPS;
 
 function processRawData(rawData) {
-  let processedData = {};
+  let data = {};
 
-  processedData.companyName = rawData.companyName;
-  processedData.companyID = rawData.companyID;
-  processedData.sector = rawData.sector;
-  processedData.financialYear = rawData.financialYear;
+  data.companyName = rawData.companyName;
+  data.companyID = rawData.companyID;
+  data.sector = rawData.sector;
+  data.financialYear = rawData.financialYear;
 
-  processedData.debt = getDebt(
+  data.debt = getDebt(
     rawData.currentLeasePayable,
     rawData.currentOtherFinancialLiabilities,
     rawData.nonCurrentLeasePayable,
     rawData.nonCurrentOtherFinancialLiabitlies
   );
-  processedData.EBIT = getEBIT(
+  data.EBIT = getEBIT(
     rawData.profit,
     rawData.interestIncome,
     rawData.interestExpense,
     rawData.tax
   );
-  processedData.captialEmployed = getCaptialEmployed(
-    processedData.debt,
+  data.captialEmployed = getCaptialEmployed(
+    data.debt,
     rawData.equity
   );
-  processedData.ROCE = getROCE(
-    processedData.EBIT,
-    processedData.captialEmployed
+  data.ROCE = getROCE(
+    data.EBIT,
+    data.captialEmployed
   );
-  processedData.PE = getPERatio(rawData.stockPrice, rawData.EPS);
-  return processedData;
+  data.PE = getPERatio(rawData.stockPrice, rawData.EPS);
+  return data;
 }
 
 export default {
   processRawData,
-  getAllProcessedData,
-  getProcessedDataByCompanyId,
-  addProcessedData
+  getAllData,
+  getDataByCompanyId,
+  addData
 };

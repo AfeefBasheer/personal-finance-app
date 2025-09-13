@@ -1,33 +1,33 @@
 import dataModel from '../model/dataModel.js'
 
-async function createNewProcessedData(processedData) {
+async function createNewData(data) {
   try {
-    return await dataModel.create(processedData);
+    return await dataModel.create(data);
   } catch (err) {
-    console.log(err + " - createNewProcessedData() | dataRepository");
+    console.log(err + " - createNewData() | dataRepository");
   }
 }
 
-async function getAllProcessedData() {
+async function getAllData() {
   try {
     return await dataModel.find();
   } catch (err) {
-    console.log(err + " - getAllProcessedData() | dataRepository");
+    console.log(err + " - getAllData() | dataRepository");
   }
 }
 
-async function getProcessedDataByCompanyId(companyId) {
+async function getDataByCompanyId(companyId) {
   try {
     return await dataModel.findOne({ companyID: companyId });
   } catch (err) {
     console.logo(
-      err + " - getProcessedDataByCompanyId | dataRepository"
+      err + " - getDataByCompanyId | dataRepository"
     );
   }
 }
 
 export default {
-  getAllProcessedData,
-  createNewProcessedData,
-  getProcessedDataByCompanyId,
+  getAllData,
+  createNewData,
+  getDataByCompanyId,
 };

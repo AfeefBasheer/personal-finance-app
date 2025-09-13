@@ -3,9 +3,9 @@ import dataService from "./dataService.js";
 
 async function addRawData(rawData) {
   const savedRawData = await rawDataRepository.createNewRawData(rawData);
-  let processedData =
+  let data =
     dataService.processRawData(savedRawData);
-  await dataService.addProcessedData(processedData);
+  await dataService.addData(data);
   return savedRawData;
 }
 
