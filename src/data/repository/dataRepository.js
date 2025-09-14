@@ -24,8 +24,25 @@ async function getDataByCompanyId(companyId) {
   }
 }
 
+async function deleteDataByCompanyId(companyId) {
+  try {
+    return await dataModel.deleteOne({ companyID: companyId });
+  } catch (err) {
+    console.log(err + "- deleteDataCompanyId | dataRepository");
+  }
+}
+
+async function deleteAllData() {
+  try {
+    return await dataModel.deleteMany();
+  } catch (err) {
+    console.log(err + "- deleteDataCompanyId | dataRepository");
+  }
+}
 export default {
   getAllData,
   createNewData,
   getDataByCompanyId,
+  deleteDataByCompanyId,
+  deleteAllData
 };
