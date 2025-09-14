@@ -9,6 +9,13 @@ async function getAllData() {
 async function getDataByCompanyId(companyId) {
   return await dataRepository.getDataByCompanyId(companyId);
 }
+async function deleteDataByCompanyId(companyId){
+  return await dataRepository.deleteDataByCompanyId(companyId)
+}
+async function deleteAllData(){
+  return await dataRepository.deleteAllData()
+}
+
 const getDebt = (
   currentLeasePayable,
   currentOtherFinancialLiabilities,
@@ -65,5 +72,7 @@ export default {
   processRawData,
   getAllData,
   getDataByCompanyId,
-  addData
+  addData,
+  deleteDataByCompanyId,
+  deleteAllData,
 };

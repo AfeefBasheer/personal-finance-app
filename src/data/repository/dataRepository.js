@@ -1,4 +1,4 @@
-import dataModel from '../model/dataModel.js'
+import dataModel from "../model/dataModel.js";
 
 async function createNewData(data) {
   try {
@@ -20,14 +20,29 @@ async function getDataByCompanyId(companyId) {
   try {
     return await dataModel.findOne({ companyID: companyId });
   } catch (err) {
-    console.logo(
-      err + " - getDataByCompanyId | dataRepository"
-    );
+    console.log(err + " - getDataByCompanyId | dataRepository");
   }
 }
 
+async function deleteDataByCompanyId(companyId) {
+  try {
+    return await dataModel.deleteOne({ companyID: companyId });
+  } catch (err) {
+    console.log(err + "- deleteDataCompanyId | dataRepository");
+  }
+}
+
+async function deleteAllData() {
+  try {
+    return await dataModel.deleteMany();
+  } catch (err) {
+    console.log(err + "- deleteDataCompanyId | dataRepository");
+  }
+}
 export default {
   getAllData,
   createNewData,
   getDataByCompanyId,
+  deleteDataByCompanyId,
+  deleteAllData
 };
