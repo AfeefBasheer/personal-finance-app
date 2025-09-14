@@ -1,4 +1,4 @@
-import dataModel from '../model/dataModel.js'
+import dataModel from "../model/dataModel.js";
 
 async function createNewData(data) {
   try {
@@ -20,9 +20,7 @@ async function getDataByCompanyId(companyId) {
   try {
     return await dataModel.findOne({ companyID: companyId });
   } catch (err) {
-    console.logo(
-      err + " - getDataByCompanyId | dataRepository"
-    );
+    console.log(err + " - getDataByCompanyId | dataRepository");
   }
 }
 
