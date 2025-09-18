@@ -8,7 +8,7 @@ const DataSchema = new mongoose.Schema(
     financialYear: { type: Number, required: true },
     debt: Number,
     EBIT: Number,
-    capitalEmployed: Number,
+    captialEmployed: Number,
     ROCE: Number,
     PE: Number,
   },

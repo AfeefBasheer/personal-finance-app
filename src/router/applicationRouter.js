@@ -1,4 +1,4 @@
-import dataRouter from "../data/router/dataRouter.js";
+import dataRouter from "../data/router/dataRouter.js"
 import rawDataRouter from "../data/router/rawDataRouter.js"
 import express from "express"
 
