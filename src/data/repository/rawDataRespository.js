@@ -36,9 +36,7 @@ async function deleteRawDataByCompanyId(companyId) {
   try {
     return await rawDataModel.deleteOne({ companyID: companyId });
   } catch (err) {
-    console.log(
-      err + " - deleteRawDataByCompanyId() | rawDataRepository"
-    );
+    console.log(err + " - deleteRawDataByCompanyId() | rawDataRepository");
   }
 }
 

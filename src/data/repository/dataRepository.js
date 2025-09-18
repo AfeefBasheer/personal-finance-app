@@ -2,7 +2,7 @@ import dataModel from "../model/dataModel.js";
 
 async function createNewData(data) {
   try {
-    data =  await dataModel.create(data);
+    return await dataModel.create(data);
   } catch (err) {
     console.log(err + " - createNewData() | dataRepository");
   }
@@ -42,7 +42,11 @@ async function deleteAllData() {
 
 async function updateDataByCompanyId(companyId, updateData) {
   try {
-    return await dataModel.findOneAndUpdate({companyID:companyId},{$set:updateData},{ new: true, runValidators: true });
+    return await dataModel.findOneAndUpdate(
+      { companyID: companyId },
+      { $set: updateData },
+      { new: true, runValidators: true }
+    );
   } catch (err) {
     console.log(err + "- updateDataByCompanyId | dataRepository");
   }

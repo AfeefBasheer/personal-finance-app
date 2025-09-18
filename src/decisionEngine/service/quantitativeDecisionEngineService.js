@@ -1,6 +1,24 @@
-import quantitativeConstants from "./constants/quantitativeDecisionEngineConstant.js";
+import quantitativeConstants from "../constants/quantitativeDecisionEngineConstant.js";
+import quantitativeDecisionEngineRepository from "../repository/quantitativeDecisionEngineRepository.js";
+
+async function getAllQuantitativeDecisions() {
+  return await quantitativeDecisionEngineRepository.getAllQuantitativeDecisions();
+}
+
+async function addQuantitativeDecision(quantitativeDecision) {
+  return await quantitativeDecisionEngineRepository.addQuantitativeDecision(
+    quantitativeDecision
+  );
+}
 
 function getQuantitativeDecision(processedData) {
+  const companyDetails = {
+    companyName: processedData.companyName,
+    companyID: processedData.companyID,
+    sector: processedData.sector,
+    financialYear: processedData.financialYear,
+  };
+
   let quantitativeDecision = getQuantitativeScore(
     quantitativeConstants.IDEAL_ROCE,
     quantitativeConstants.IDEAL_PE,
@@ -26,8 +44,7 @@ function getQuantitativeDecision(processedData) {
     quantitativeConstants.EXCELLENT_GRADE_THRESHOLD,
     quantitativeConstants.POOR_GRADE_THRESHOLD
   );
-
-  return quantitativeDecision;
+  return { ...companyDetails, ...quantitativeDecision };
 }
 
 function getQuantitativeScore(
@@ -69,10 +86,15 @@ function getAssessment(
   EXCELLENT_GRADE_THRESHOLD,
   POOR_GRADE_THRESHOLD
 ) {
-  if (value <= POOR_GRADE_THRESHOLD) return "Company's "+property+" is Poor";
+  if (value <= POOR_GRADE_THRESHOLD)
+    return "Company's " + property + " is Poor";
   else if (value >= EXCELLENT_GRADE_THRESHOLD)
-    return  "Company's "+property+" is Excellent";
-  else return "Company's "+property+" is Good";
+    return "Company's " + property + " is Excellent";
+  else return "Company's " + property + " is Good";
 }
 
-export default {getQuantitativeDecision}
+export default {
+  getQuantitativeDecision,
+  getAllQuantitativeDecisions,
+  addQuantitativeDecision,
+};
