@@ -2,7 +2,7 @@ import dataModel from "../model/dataModel.js";
 
 async function createNewData(data) {
   try {
-    data =  await dataModel.create(data);
+    return await dataModel.create(data);
   } catch (err) {
     console.log(err + " - createNewData() | dataRepository");
   }
