@@ -10,7 +10,11 @@ async function addQuantitativeDecision(quantitativeDecision) {
     quantitativeDecision
   );
 }
-
+async function getQuantitativeDecisionByCompanyId(companyId) {
+  return await quantitativeDecisionEngineRepository.getQuantitativeDecisionByCompanyId(
+    companyId
+  );
+}
 function getQuantitativeDecision(processedData) {
   const companyDetails = {
     companyName: processedData.companyName,
@@ -97,4 +101,5 @@ export default {
   getQuantitativeDecision,
   getAllQuantitativeDecisions,
   addQuantitativeDecision,
+  getQuantitativeDecisionByCompanyId,
 };
