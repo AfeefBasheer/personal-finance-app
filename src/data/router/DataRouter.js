@@ -27,4 +27,9 @@ Router.delete("/data", async (req, res) => {
   else res.status(204).send(response);
 });
 
+Router.patch("/data/:id", async (req, res) => {
+  let response = await dataService.updateDataByCompanyId(req.params.id,req.body);
+  if (!response) res.status(404).send();
+  else res.status(202).send(response);
+});
 export default Router;

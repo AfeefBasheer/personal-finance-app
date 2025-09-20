@@ -36,7 +36,15 @@ async function deleteAllData() {
   try {
     return await dataModel.deleteMany();
   } catch (err) {
-    console.log(err + "- deleteDataCompanyId | dataRepository");
+    console.log(err + "- deleteAllData | dataRepository");
+  }
+}
+
+async function updateDataByCompanyId(companyId, updateData) {
+  try {
+    return await dataModel.findOneAndUpdate({companyID:companyId},{$set:updateData},{ new: true, runValidators: true });
+  } catch (err) {
+    console.log(err + "- updateDataByCompanyId | dataRepository");
   }
 }
 export default {
@@ -44,5 +52,6 @@ export default {
   createNewData,
   getDataByCompanyId,
   deleteDataByCompanyId,
-  deleteAllData
+  deleteAllData,
+  updateDataByCompanyId,
 };

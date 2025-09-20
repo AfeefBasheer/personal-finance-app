@@ -9,13 +9,15 @@ async function getAllData() {
 async function getDataByCompanyId(companyId) {
   return await dataRepository.getDataByCompanyId(companyId);
 }
-async function deleteDataByCompanyId(companyId){
-  return await dataRepository.deleteDataByCompanyId(companyId)
+async function deleteDataByCompanyId(companyId) {
+  return await dataRepository.deleteDataByCompanyId(companyId);
 }
-async function deleteAllData(){
-  return await dataRepository.deleteAllData()
+async function deleteAllData() {
+  return await dataRepository.deleteAllData();
 }
-
+async function updateDataByCompanyId(companyId, updateData) {
+  return await dataRepository.updateDataByCompanyId(companyId, updateData);
+}
 const getDebt = (
   currentLeasePayable,
   currentOtherFinancialLiabilities,
@@ -56,14 +58,8 @@ function processRawData(rawData) {
     rawData.interestExpense,
     rawData.tax
   );
-  data.captialEmployed = getCaptialEmployed(
-    data.debt,
-    rawData.equity
-  );
-  data.ROCE = getROCE(
-    data.EBIT,
-    data.captialEmployed
-  );
+  data.captialEmployed = getCaptialEmployed(data.debt, rawData.equity);
+  data.ROCE = getROCE(data.EBIT, data.captialEmployed);
   data.PE = getPERatio(rawData.stockPrice, rawData.EPS);
   return data;
 }
@@ -75,4 +71,5 @@ export default {
   addData,
   deleteDataByCompanyId,
   deleteAllData,
+  updateDataByCompanyId,
 };
