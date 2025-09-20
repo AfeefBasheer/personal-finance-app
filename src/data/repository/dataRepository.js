@@ -42,7 +42,11 @@ async function deleteAllData() {
 
 async function updateDataByCompanyId(companyId, updateData) {
   try {
-    return await dataModel.findOneAndUpdate({companyID:companyId},{$set:updateData},{ new: true, runValidators: true });
+    return await dataModel.findOneAndUpdate(
+      { companyID: companyId },
+      { $set: updateData },
+      { new: true, runValidators: true }
+    );
   } catch (err) {
     console.log(err + "- updateDataByCompanyId | dataRepository");
   }
@@ -52,6 +56,8 @@ export default {
   createNewData,
   getDataByCompanyId,
   deleteDataByCompanyId,
+  deleteAllData,
+  updateDataByCompanyId,
   deleteAllData,
   updateDataByCompanyId,
 };
