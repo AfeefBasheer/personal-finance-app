@@ -1,4 +1,4 @@
-import quantitativeDecisionEngineService from "../../decisionEngine/service/quantitativeDecisionEngineService.js";
+import quantitativeDecisionEngineService from "../../decisionEngine/service/quantitativeDecisionService.js";
 import dataRepository from "../repository/dataRepository.js";
 
 async function addData(data) {
