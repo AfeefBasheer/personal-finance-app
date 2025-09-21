@@ -1,12 +1,12 @@
 import quantitativeConstants from "../constants/quantitativeDecisionConstant.js";
-import quantitativeDecisionEngineRepository from "../repository/quantitativeDecisionRepository.js";
+import quantitativeDecisionRepository from "../repository/quantitativeDecisionRepository.js";
 
 async function getAllQuantitativeDecisions() {
-  return await quantitativeDecisionEngineRepository.getAllQuantitativeDecisions();
+  return await quantitativeDecisionRepository.getAllQuantitativeDecisions();
 }
 
 async function addQuantitativeDecision(quantitativeDecision) {
-  return await quantitativeDecisionEngineRepository.addQuantitativeDecision(
+  return await quantitativeDecisionRepository.addQuantitativeDecision(
     quantitativeDecision
   );
 }

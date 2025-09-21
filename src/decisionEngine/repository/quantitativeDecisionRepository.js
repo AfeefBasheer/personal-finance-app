@@ -15,4 +15,5 @@ async function getAllQuantitativeDecisions() {
     console.log(err);
   }
 }
+
 export default { addQuantitativeDecision, getAllQuantitativeDecisions };

@@ -18,6 +18,6 @@ const quantitativeDecisionSchema = new mongoose.Schema(
 );
 
 export default mongoose.model(
-  "QuantiativeDecision",
+  "QuantitativeDecision",
   quantitativeDecisionSchema
 );

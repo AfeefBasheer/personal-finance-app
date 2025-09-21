@@ -51,6 +51,7 @@ async function updateDataByCompanyId(companyId, updateData) {
     console.log(err + "- updateDataByCompanyId | dataRepository");
   }
 }
+
 export default {
   getAllData,
   createNewData,
@@ -58,6 +59,5 @@ export default {
   deleteDataByCompanyId,
   deleteAllData,
   updateDataByCompanyId,
-  deleteAllData,
   updateDataByCompanyId,
 };
