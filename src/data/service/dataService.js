@@ -1,7 +1,14 @@
+import quantitativeDecisionService from "../../decisionEngine/service/quantitativeDecisionService.js";
 import dataRepository from "../repository/dataRepository.js";
 
 async function addData(data) {
-  return await dataRepository.createNewData(data);
+  const savedData = await dataRepository.createNewData(data);
+  let quantitativeDecision =
+    quantitativeDecisionService.getQuantitativeDecision(savedData);
+  await quantitativeDecisionService.addQuantitativeDecision(
+    quantitativeDecision
+  );
+  return savedData;
 }
 async function getAllData() {
   return await dataRepository.getAllData();

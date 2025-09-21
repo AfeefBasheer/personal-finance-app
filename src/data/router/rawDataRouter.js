@@ -1,5 +1,5 @@
 import express from "express";
-import rawDataService from '../service/rawDataService.js'
+import rawDataService from "../service/rawDataService.js";
 
 const Router = express.Router();
 
