@@ -35,4 +35,5 @@ Router.patch("/data/:id", async (req, res) => {
   if (!response) res.status(404).send();
   else res.status(202).send(response);
 });
+
 export default Router;
