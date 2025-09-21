@@ -1,5 +1,5 @@
-import quantitativeConstants from "../constants/quantitativeDecisionEngineConstant.js";
-import quantitativeDecisionEngineRepository from "../repository/quantitativeDecisionEngineRepository.js";
+import quantitativeConstants from "../constants/quantitativeDecisionConstant.js";
+import quantitativeDecisionEngineRepository from "../repository/quantitativeDecisionRepository.js";
 
 async function getAllQuantitativeDecisions() {
   return await quantitativeDecisionEngineRepository.getAllQuantitativeDecisions();

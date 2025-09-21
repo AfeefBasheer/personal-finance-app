@@ -1,4 +1,4 @@
-import decisionEngineModel from "../model/quantitativeDecisionEngineModel.js";
+import decisionEngineModel from "../model/quantitativeDecisionModel.js";
 
 async function addQuantitativeDecision(quantiativeDecision) {
   try {
