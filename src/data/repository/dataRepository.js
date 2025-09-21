@@ -59,5 +59,4 @@ export default {
   deleteDataByCompanyId,
   deleteAllData,
   updateDataByCompanyId,
-  updateDataByCompanyId,
 };
