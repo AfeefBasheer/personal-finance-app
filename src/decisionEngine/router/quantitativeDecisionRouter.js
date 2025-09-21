@@ -1,5 +1,6 @@
 import express from "express";
 import quantitativeDecisionService from "../service/quantitativeDecisionService.js";
+
 const Router = express.Router();
 
 Router.get("/quantitativedecision", async (req, res) => {

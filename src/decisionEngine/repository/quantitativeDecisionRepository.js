@@ -23,6 +23,7 @@ async function getQuantitativeDecisionByCompanyId(companyId) {
     console.log(err);
   }
 }
+
 export default {
   addQuantitativeDecision,
   getAllQuantitativeDecisions,
