@@ -55,10 +55,8 @@ async function updateDataByCompanyId(companyId, updateData) {
 export default {
   getAllData,
   createNewData,
+  deleteAllData,
   getDataByCompanyId,
   deleteDataByCompanyId,
-  deleteAllData,
-  updateDataByCompanyId,
-  deleteAllData,
   updateDataByCompanyId,
 };
