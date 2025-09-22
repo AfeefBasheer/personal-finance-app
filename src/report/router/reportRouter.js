@@ -9,4 +9,10 @@ Router.get("/report", async (req, res) => {
   else res.status(200).send(response);
 });
 
+Router.get("/report/:id", async (req, res) => {
+  let response = await reportServices.getReportByCompanyId(req.params.id);
+  if (!response) res.status(404).send();
+  else res.status(200).send(response);
+});
+
 export default Router;

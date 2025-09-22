@@ -8,8 +8,17 @@ async function getAllReports() {
   return await reportRepository.getAllReports();
 }
 
+async function getReportByCompanyId(companyId) {
+  return await reportRepository.getReportByCompanyId(companyId);
+}
+
 function generateReport(rawData, processedData, quantitativeDecision) {
   return { ...rawData, ...processedData, ...quantitativeDecision };
 }
 
-export default { generateReport, addReport, getAllReports };
+export default {
+  generateReport,
+  addReport,
+  getAllReports,
+  getReportByCompanyId,
+};
