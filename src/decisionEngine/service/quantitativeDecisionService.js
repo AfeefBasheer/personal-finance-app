@@ -11,6 +11,12 @@ async function addQuantitativeDecision(quantitativeDecision) {
   );
 }
 
+async function getQuantitativeDecisionByCompanyId(companyId) {
+  return await quantitativeDecisionRepository.getQuantitativeDecisionByCompanyId(
+    companyId
+  );
+}
+
 function getQuantitativeDecision(processedData) {
   const companyDetails = {
     companyName: processedData.companyName,
@@ -75,7 +81,6 @@ function getQuantitativeScore(
       MAX_SCORE - PE_SCALING_FACTOR * Math.pow(diff, PE_SENSITIVITY);
     scores.PEscore = Math.max(PE_LOWEST_ALLOWED_SCORE, scores.PEscore);
   }
-
   scores.total = scores.ROCEscore + scores.PEscore;
   return scores;
 }
@@ -97,4 +102,5 @@ export default {
   getQuantitativeDecision,
   getAllQuantitativeDecisions,
   addQuantitativeDecision,
+  getQuantitativeDecisionByCompanyId,
 };

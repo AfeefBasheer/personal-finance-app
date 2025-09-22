@@ -16,4 +16,16 @@ async function getAllQuantitativeDecisions() {
   }
 }
 
-export default { addQuantitativeDecision, getAllQuantitativeDecisions };
+async function getQuantitativeDecisionByCompanyId(companyId) {
+  try {
+    return await decisionEngineModel.findOne({ companyID: companyId });
+  } catch (err) {
+    console.log(err);
+  }
+}
+
+export default {
+  addQuantitativeDecision,
+  getAllQuantitativeDecisions,
+  getQuantitativeDecisionByCompanyId,
+};

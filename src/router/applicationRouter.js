@@ -1,7 +1,7 @@
-import quantitativeDecisionRouter from "../decisionEngine/router/quantitativeDecisionRouter.js";
-import rawDataRouter from "../data/router/rawDataRouter.js";
 import dataRouter from "../data/router/dataRouter.js"
-import express from "express";
+import quantitativeDecisionRouter from "../decisionEngine/router/quantitativeDecisionRouter.js"
+import rawDataRouter from "../data/router/rawDataRouter.js"
+import express from "express"
 
 const appRouter = express.Router();
 
