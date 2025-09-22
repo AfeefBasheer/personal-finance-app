@@ -17,6 +17,12 @@ async function getQuantitativeDecisionByCompanyId(companyId) {
   );
 }
 
+async function deleteQuantitativeDecisionByCompanyId(companyId) {
+  return await quantitativeDecisionRepository.deleteQuantitativeDecisionByCompanyId(
+    companyId
+  );
+}
+
 function getQuantitativeDecision(processedData) {
   const companyDetails = {
     companyName: processedData.companyName,
@@ -103,4 +109,5 @@ export default {
   getAllQuantitativeDecisions,
   addQuantitativeDecision,
   getQuantitativeDecisionByCompanyId,
+  deleteQuantitativeDecisionByCompanyId,
 };
