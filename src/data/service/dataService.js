@@ -1,30 +1,38 @@
 import quantitativeDecisionService from "../../decisionEngine/service/quantitativeDecisionService.js";
 import dataRepository from "../repository/dataRepository.js";
 
-async function addData(data) {
+async function addData(rawdata, data) {
   const savedData = await dataRepository.createNewData(data);
   let quantitativeDecision =
     quantitativeDecisionService.getQuantitativeDecision(savedData);
   await quantitativeDecisionService.addQuantitativeDecision(
+    rawdata,
+    savedData,
     quantitativeDecision
   );
   return savedData;
 }
+
 async function getAllData() {
   return await dataRepository.getAllData();
 }
+
 async function getDataByCompanyId(companyId) {
   return await dataRepository.getDataByCompanyId(companyId);
 }
+
 async function deleteDataByCompanyId(companyId) {
   return await dataRepository.deleteDataByCompanyId(companyId);
 }
+
 async function deleteAllData() {
   return await dataRepository.deleteAllData();
 }
+
 async function updateDataByCompanyId(companyId, updateData) {
   return await dataRepository.updateDataByCompanyId(companyId, updateData);
 }
+
 const getDebt = (
   currentLeasePayable,
   currentOtherFinancialLiabilities,

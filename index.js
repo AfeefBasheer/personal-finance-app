@@ -10,7 +10,7 @@ http.createServer(app);
 
 database();
 app.use(express.json());
-app.use("/", appRouter); // app using appRouter
+app.use("/", appRouter);
 
 app.listen(portNumber, (err) => {
   if (err) console.log("ERROR - " + err);
