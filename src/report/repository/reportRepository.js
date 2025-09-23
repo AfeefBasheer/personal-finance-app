@@ -25,3 +25,4 @@ async function getReportByCompanyId(companyId) {
 }
 
 export default { getAllReports, addReport, getReportByCompanyId };
+
