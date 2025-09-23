@@ -18,7 +18,7 @@ const rawDataSchema = new mongoose.Schema(
     currentLeasePayable: Number,
     currentOtherFinancialLiabilities: Number,
     nonCurrentLeasePayable: Number,
-    nonCurrentOtherFinancialLiabitlies: Number,
+    nonCurrentOtherFinancialLiabilities: Number,
   },
   {
     timestamps: true,

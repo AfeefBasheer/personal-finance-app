@@ -18,7 +18,7 @@ const reportSchema = new mongoose.Schema(
     currentLeasePayable: Number,
     currentOtherFinancialLiabilities: Number,
     nonCurrentLeasePayable: Number,
-    nonCurrentOtherFinancialLiabitlies: Number,
+    nonCurrentOtherFinancialLiabilities: Number,
     debt: Number,
     EBIT: Number,
     capitalEmployed: Number,

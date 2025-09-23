@@ -8,8 +8,8 @@ async function addRawData(rawData) {
   return savedRawData;
 }
 
-async function getAllRawData(rawData) {
-  return await rawDataRepository.getAllRawData(rawData);
+async function getAllRawData() {
+  return await rawDataRepository.getAllRawData();
 }
 
 async function getRawDataByCompanyId(companyId) {
