@@ -37,11 +37,11 @@ const getDebt = (
   currentLeasePayable,
   currentOtherFinancialLiabilities,
   nonCurrentLeasePayable,
-  nonCurrentOtherFinancialLiabitlies
+  nonCurrentOtherFinancialLiabilities
 ) =>
   currentLeasePayable +
   currentOtherFinancialLiabilities +
-  nonCurrentOtherFinancialLiabitlies +
+  nonCurrentOtherFinancialLiabilities +
   nonCurrentLeasePayable;
 
 const getEBIT = (profit, interestIncome, interestExpense, tax) =>
@@ -65,7 +65,7 @@ function processRawData(rawData) {
     rawData.currentLeasePayable,
     rawData.currentOtherFinancialLiabilities,
     rawData.nonCurrentLeasePayable,
-    rawData.nonCurrentOtherFinancialLiabitlies
+    rawData.nonCurrentOtherFinancialLiabilities
   );
   data.EBIT = getEBIT(
     rawData.profit,
