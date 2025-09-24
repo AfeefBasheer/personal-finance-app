@@ -8,9 +8,9 @@ const quantitativeDecisionSchema = new mongoose.Schema(
     financialYear: { type: Number, required: true },
     ROCEscore: Number,
     PEscore: Number,
-    total: Number,
     PE_assessment: String,
     ROCE_assessment: String,
+    total_score: Number,
   },
   {
     timestamps: true,

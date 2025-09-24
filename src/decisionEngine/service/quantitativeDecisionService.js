@@ -1,14 +1,22 @@
 import quantitativeConstants from "../constants/quantitativeDecisionConstant.js";
 import quantitativeDecisionRepository from "../repository/quantitativeDecisionRepository.js";
+import reportService from "../../report/service/reportService.js";
 
 async function getAllQuantitativeDecisions() {
   return await quantitativeDecisionRepository.getAllQuantitativeDecisions();
 }
 
-async function addQuantitativeDecision(quantitativeDecision) {
-  return await quantitativeDecisionRepository.addQuantitativeDecision(
-    quantitativeDecision
+async function addQuantitativeDecision(rawdata, data, quantitativeDecision) {
+  let savedQuantitativeDecision =
+    await quantitativeDecisionRepository.addQuantitativeDecision(
+      quantitativeDecision
+    );
+  let report = reportService.generateReport(
+    rawdata,
+    data,
+    savedQuantitativeDecision
   );
+  await reportService.addReport(report);
 }
 
 async function getQuantitativeDecisionByCompanyId(companyId) {
@@ -23,19 +31,19 @@ async function deleteQuantitativeDecisionByCompanyId(companyId) {
   );
 }
 
-function getQuantitativeDecision(processedData) {
+function getQuantitativeDecision(data) {
   const companyDetails = {
-    companyName: processedData.companyName,
-    companyID: processedData.companyID,
-    sector: processedData.sector,
-    financialYear: processedData.financialYear,
+    companyName: data.companyName,
+    companyID: data.companyID,
+    sector: data.sector,
+    financialYear: data.financialYear,
   };
 
   let quantitativeDecision = getQuantitativeScore(
     quantitativeConstants.IDEAL_ROCE,
     quantitativeConstants.IDEAL_PE,
-    processedData.ROCE,
-    processedData.PE,
+    data.ROCE,
+    data.PE,
     quantitativeConstants.PE_SENSITIVITY,
     quantitativeConstants.PE_LIMIT,
     quantitativeConstants.PE_SCALING_FACTOR,

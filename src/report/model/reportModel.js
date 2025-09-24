@@ -1,6 +1,6 @@
 import mongoose from "mongoose";
 
-const rawDataSchema = new mongoose.Schema(
+const reportSchema = new mongoose.Schema(
   {
     companyName: { type: String, required: true },
     companyID: { type: String, required: true },
@@ -19,10 +19,20 @@ const rawDataSchema = new mongoose.Schema(
     currentOtherFinancialLiabilities: Number,
     nonCurrentLeasePayable: Number,
     nonCurrentOtherFinancialLiabilities: Number,
+    debt: Number,
+    EBIT: Number,
+    capitalEmployed: Number,
+    ROCE: Number,
+    ROCEscore: Number,
+    ROCE_assessment: String,
+    PE: Number,
+    PEscore: Number,
+    PE_assessment: String,
+    total_score: Number,
   },
   {
     timestamps: true,
   }
 );
 
-export default mongoose.model("RawData", rawDataSchema);
+export default mongoose.model("Report", reportSchema);
