@@ -16,4 +16,13 @@ async function getAllReports() {
   }
 }
 
-export default { getAllReports, addReport };
+async function getReportByCompanyId(companyId) {
+  try {
+    return await reportModel.findOne({ companyID: companyId });
+  } catch (err) {
+    console.log(err + " - getReportByCompanyId | reportRepository");
+  }
+}
+
+export default { getAllReports, addReport, getReportByCompanyId };
+
