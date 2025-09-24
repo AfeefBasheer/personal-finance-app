@@ -24,5 +24,17 @@ async function getReportByCompanyId(companyId) {
   }
 }
 
-export default { getAllReports, addReport, getReportByCompanyId };
+async function deleteReportByCompanyId(companyId) {
+  try {
+    return await reportModel.deleteOne({ companyID: companyId });
+  } catch (err) {
+    console.log(err + " - deleteReportByCompanyId | reportRepository");
+  }
+}
 
+export default {
+  getAllReports,
+  addReport,
+  getReportByCompanyId,
+  deleteReportByCompanyId,
+};
