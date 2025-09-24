@@ -12,6 +12,10 @@ async function getReportByCompanyId(companyId) {
   return await reportRepository.getReportByCompanyId(companyId);
 }
 
+async function deleteReportByCompanyId(companyId) {
+  return await reportRepository.deleteReportByCompanyId(companyId);
+}
+
 function generateReport(rawData, processedData, quantitativeDecision) {
   return { ...rawData, ...processedData, ...quantitativeDecision };
 }
@@ -21,4 +25,5 @@ export default {
   addReport,
   getAllReports,
   getReportByCompanyId,
+  deleteReportByCompanyId,
 };
