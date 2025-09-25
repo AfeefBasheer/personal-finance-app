@@ -2,7 +2,8 @@ import mongoose from "mongoose";
 
 const database = async () => {
   try {
-    await mongoose.connect("mongodb://127.0.0.1:27017/FinanceApp");
+    await mongoose.connect("mongodb://localhost:27017/personal_finance_app");
+
     console.log("MongoDB Connection Successful");
   } catch (e) {
     console.error("MongoDB Connection Failed", e);
