@@ -21,7 +21,6 @@ function rawDataValidationRules() {
       .withMessage("Market capital cannot be a negative number."),
     validator
       .body("stockPrice")
-
       .isFloat({ min: 0 })
       .withMessage("Stock price cannot be a negative number"),
     validator.body("profit").isFloat(),
@@ -49,7 +48,6 @@ function rawDataValidationRules() {
       .withMessage("currentLeasePayable must be a positive number"),
     validator
       .body("currentOtherFinancialLiabilities")
-
       .isFloat({ min: 0 })
       .withMessage(
         "currentOtherFinancialLiabilities must be a positive number"
@@ -60,7 +58,6 @@ function rawDataValidationRules() {
       .withMessage("nonCurrentLeasePayable must be a positive number"),
     validator
       .body("nonCurrentOtherFinancialLiabilities")
-
       .isFloat({ min: 0 })
       .withMessage(
         "nonCurrentOtherFinancialLiabilities  shares must be a positive number"
