@@ -24,5 +24,9 @@ const rawDataSchema = new mongoose.Schema(
     timestamps: true,
   }
 );
+rawDataSchema.index(
+  { companyName: 1, companyID: 1, sector: 1, financialYear: 1 },
+  { unique: true }
+);
 
 export default mongoose.model("RawData", rawDataSchema);

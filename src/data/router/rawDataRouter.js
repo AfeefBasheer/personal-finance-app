@@ -1,13 +1,19 @@
 import express from "express";
 import rawDataService from "../service/rawDataService.js";
+import rawDataValidator from "../validator/rawDataValidator.js";
 
 const Router = express.Router();
 
-Router.post("/rawdata", async (req, res) => {
-  let response = await rawDataService.addRawData(req.body);
-  if (!response) res.status(500).send();
-  else res.status(201).send(response);
-});
+Router.post(
+  "/rawdata",
+  rawDataValidator.rawDataValidationRules(),
+  rawDataValidator.validateRawData,
+  async (req, res) => {
+    let response = await rawDataService.addRawData(req.body);
+    if (!response) res.status(422).send();
+    else res.status(201).send(response);
+  }
+);
 
 Router.get("/rawdata", async (req, res) => {
   let response = await rawDataService.getAllRawData();
