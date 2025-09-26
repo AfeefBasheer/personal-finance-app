@@ -5,6 +5,7 @@
     "mongoose": "^8.16.1"
   },
   "scripts": {
+    "prestart": "docker compose up -d",
     "start": "node index.js"
   }
 }
