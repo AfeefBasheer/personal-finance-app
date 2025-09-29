@@ -1,10 +1,10 @@
-import rawDataRepository from "../repository/rawDataRespository.js";
+import rawDataRepository from "../repository/rawDataRepository.js";
 import dataService from "./dataService.js";
 
 async function addRawData(rawData) {
   const savedRawData = await rawDataRepository.createNewRawData(rawData);
   if (savedRawData) {
-    let data = dataService.processRawData(savedRawData);
+    const data = dataService.processRawData(savedRawData);
     await dataService.addData(rawData, data);
     return savedRawData;
   }
