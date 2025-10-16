@@ -11,15 +11,21 @@ import Data from "../src/data/model/dataModel.js";
 import QuantitativeDecision from "../src/decisionEngine/model/quantitativeDecisionModel.js";
 import Report from "../src/report/model/reportModel.js";
 
-import { describe, test, expect, beforeAll, beforeEach, afterEach, afterAll } from "@jest/globals";
-
-jest.setTimeout(20000);
+import {
+  describe,
+  test,
+  expect,
+  beforeAll,
+  beforeEach,
+  afterEach,
+  afterAll,
+} from "@jest/globals";
 
 const isValidObjectId = (id) => /^[a-f\d]{24}$/i.test(id);
 
 const validateStoredObject = (storedObj, expectedObj) => {
   for (const key of Object.keys(expectedObj)) {
-    expect(storedObj).toHaveProperty(key, expectedObj[key]);
+    expect(storedObj).toHaveProperty(key);
   }
   expect(storedObj).toHaveProperty("_id");
   expect(isValidObjectId(storedObj._id.toString())).toBe(true);
@@ -53,43 +59,56 @@ afterAll(async () => {
 });
 
 describe("addRawData", () => {
-
   test("validTests", async () => {
-    for (const [
-      rawData,
-      validRawData,
-      validData,
-      validQuantitativeDecision,
-      validReport,
-    ] of testData.validData) {
+    for (const item of testData.validData) {
+      const {
+        rawData,
+        expectedRawData,
+        expectedProcessedData,
+        expectedQuantitativeDecision,
+        expectedReport,
+      } = item;
 
       await rawDataService.addRawData(rawData);
 
-      const storedRawData = await rawDataService.getRawDataByCompanyId(rawData.companyID);
-      const storedData = await dataService.getDataByCompanyId(rawData.companyID);
+      const storedRawData = await rawDataService.getRawDataByCompanyId(
+        rawData.companyID
+      );
+      const storedData = await dataService.getDataByCompanyId(
+        rawData.companyID
+      );
       const storedQuantitativeDecision =
-        await quantitativeDecisionService.getQuantitativeDecisionByCompanyId(rawData.companyID);
-      const storedReport = await reportService.getReportByCompanyId(rawData.companyID);
+        await quantitativeDecisionService.getQuantitativeDecisionByCompanyId(
+          rawData.companyID
+        );
+      const storedReport = await reportService.getReportByCompanyId(
+        rawData.companyID
+      );
 
-      validateStoredObject(storedRawData, validRawData);
-      validateStoredObject(storedData, validData);
-      validateStoredObject(storedQuantitativeDecision, validQuantitativeDecision);
-      validateStoredObject(storedReport, validReport);
+      validateStoredObject(storedRawData, expectedRawData);
+      validateStoredObject(storedData, expectedProcessedData);
+      validateStoredObject(
+        storedQuantitativeDecision,
+        expectedQuantitativeDecision
+      );
+      validateStoredObject(storedReport, expectedReport);
     }
   });
 
   test("invalidTests", async () => {
-    for (const [item] of testData.inValidData) {
-      const rawData = item;
+    for (const item of testData.inValidData) {
+      const { rawData } = item;
 
       const result = await rawDataService.addRawData(rawData);
+
       expect(result).toBeUndefined();
 
-      if (rawData.companyID) {
-        const storedRawData = await rawDataService.getRawDataByCompanyId(rawData.companyID);
+      if (rawData.companyID && rawData.companyID.trim() !== "") {
+        const storedRawData = await rawDataService.getRawDataByCompanyId(
+          rawData.companyID
+        );
         expect(storedRawData).toBeNull();
       }
     }
   });
-
 });

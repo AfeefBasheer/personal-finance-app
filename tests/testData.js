@@ -1,9 +1,6 @@
-// tests/testData.js
-
 const validData = [
-  [
-    // rawData
-    {
+  {
+    rawData: {
       companyName: "MyCompany1",
       companyID: "MyCompanyID001",
       sector: "Software",
@@ -20,10 +17,9 @@ const validData = [
       currentLeasePayable: 5,
       currentOtherFinancialLiabilities: 5,
       nonCurrentLeasePayable: 5,
-      nonCurrentOtherFinancialLiabilities: 5,
+      nonCurrentOtherFinancialLiabilities: 5
     },
-    // expectedRawData
-    {
+    expectedRawData: {
       companyName: "MyCompany1",
       companyID: "MyCompanyID001",
       sector: "Software",
@@ -40,10 +36,9 @@ const validData = [
       currentLeasePayable: 5,
       currentOtherFinancialLiabilities: 5,
       nonCurrentLeasePayable: 5,
-      nonCurrentOtherFinancialLiabilities: 5,
+      nonCurrentOtherFinancialLiabilities: 5
     },
-    // expectedProcessedData
-    {
+    expectedProcessedData: {
       companyName: "MyCompany1",
       companyID: "MyCompanyID001",
       sector: "Software",
@@ -51,10 +46,9 @@ const validData = [
       debt: 20,
       EBIT: 1180,
       ROCE: 0.13082039911308205,
-      PE: 6,
+      PE: 6
     },
-    // expectedQuantitativeDecision
-    {
+    expectedQuantitativeDecision: {
       companyName: "MyCompany1",
       companyID: "MyCompanyID001",
       sector: "Software",
@@ -62,10 +56,9 @@ const validData = [
       ROCEscore: 0.02180339985218034,
       PEscore: 4.208295253536264,
       PE_assessment: "Company's PE ratio is Good",
-      ROCE_assessment: "Company's ROCE ratio is Poor",
+      ROCE_assessment: "Company's ROCE ratio is Poor"
     },
-    // expectedReport
-    {
+    expectedReport: {
       companyName: "MyCompany1",
       companyID: "MyCompanyID001",
       sector: "Software",
@@ -82,106 +75,140 @@ const validData = [
       currentLeasePayable: 5,
       currentOtherFinancialLiabilities: 5,
       nonCurrentLeasePayable: 5,
-      nonCurrentOtherFinancialLiabilities: 5,
-    },
-  ],
-  [
-    // rawData
-    {
-      companyName: "MyCompany1",
-      companyID: "MyCompanyID001",
-      sector: "Software",
+      nonCurrentOtherFinancialLiabilities: 5
+    }
+  },
+  {
+    rawData: {
+      companyName: "MyCompany2",
+      companyID: "MyCompanyID002",
+      sector: "Finance",
       financialYear: 2025,
-      marketCapital: 150000,
-      stockPrice: 12,
-      profit: 1200,
-      EPS: 2,
-      equity: 9000,
-      outstandingShares: 1000,
-      interestIncome: 60,
-      tax: 25,
-      interestExpense: 15,
-      currentLeasePayable: 5,
-      currentOtherFinancialLiabilities: 5,
-      nonCurrentLeasePayable: 5,
-      nonCurrentOtherFinancialLiabilities: 5,
+      marketCapital: 200000,
+      stockPrice: 15,
+      profit: 2000,
+      EPS: 3,
+      equity: 15000,
+      outstandingShares: 1200,
+      interestIncome: 80,
+      tax: 40,
+      interestExpense: 20,
+      currentLeasePayable: 10,
+      currentOtherFinancialLiabilities: 10,
+      nonCurrentLeasePayable: 10,
+      nonCurrentOtherFinancialLiabilities: 10
     },
-    // expectedRawData
-    {
-      companyName: "MyCompany1",
-      companyID: "MyCompanyID001",
-      sector: "Software",
+    expectedRawData: {
+      companyName: "MyCompany2",
+      companyID: "MyCompanyID002",
+      sector: "Finance",
       financialYear: 2025,
-      marketCapital: 150000,
-      stockPrice: 12,
-      profit: 1200,
-      EPS: 2,
-      equity: 9000,
-      outstandingShares: 1000,
-      interestIncome: 60,
-      tax: 25,
-      interestExpense: 15,
-      currentLeasePayable: 5,
-      currentOtherFinancialLiabilities: 5,
-      nonCurrentLeasePayable: 5,
-      nonCurrentOtherFinancialLiabilities: 5,
+      marketCapital: 200000,
+      stockPrice: 15,
+      profit: 2000,
+      EPS: 3,
+      equity: 15000,
+      outstandingShares: 1200,
+      interestIncome: 80,
+      tax: 40,
+      interestExpense: 20,
+      currentLeasePayable: 10,
+      currentOtherFinancialLiabilities: 10,
+      nonCurrentLeasePayable: 10,
+      nonCurrentOtherFinancialLiabilities: 10
     },
-    // expectedProcessedData
-    {
-      companyName: "MyCompany1",
-      companyID: "MyCompanyID001",
-      sector: "Software",
+    expectedProcessedData: {
+      companyName: "MyCompany2",
+      companyID: "MyCompanyID002",
+      sector: "Finance",
       financialYear: 2025,
-      debt: 20,
-      EBIT: 1180,
-      ROCE: 0.13082039911308205,
-      PE: 6,
+      debt: 40,
+      EBIT: 1960,
+      ROCE: 0.13066666666666666,
+      PE: 5
     },
-    // expectedQuantitativeDecision
-    {
-      companyName: "MyCompany1",
-      companyID: "MyCompanyID001",
-      sector: "Software",
+    expectedQuantitativeDecision: {
+      companyName: "MyCompany2",
+      companyID: "MyCompanyID002",
+      sector: "Finance",
       financialYear: 2025,
-      ROCEscore: 0.02180339985218034,
-      PEscore: 4.208295253536264,
+      ROCEscore: 0.021777777777777778,
+      PEscore: 4.5,
       PE_assessment: "Company's PE ratio is Good",
-      ROCE_assessment: "Company's ROCE ratio is Poor",
+      ROCE_assessment: "Company's ROCE ratio is Poor"
     },
-    // expectedReport
-    {
-      companyName: "MyCompany1",
-      companyID: "MyCompanyID001",
-      sector: "Software",
+    expectedReport: {
+      companyName: "MyCompany2",
+      companyID: "MyCompanyID002",
+      sector: "Finance",
       financialYear: 2025,
-      marketCapital: 150000,
-      stockPrice: 12,
-      profit: 1200,
-      EPS: 2,
-      equity: 9000,
-      outstandingShares: 1000,
-      interestIncome: 60,
-      tax: 25,
-      interestExpense: 15,
-      currentLeasePayable: 5,
-      currentOtherFinancialLiabilities: 5,
-      nonCurrentLeasePayable: 5,
-      nonCurrentOtherFinancialLiabilities: 5,
-    },
-  ],
+      marketCapital: 200000,
+      stockPrice: 15,
+      profit: 2000,
+      EPS: 3,
+      equity: 15000,
+      outstandingShares: 1200,
+      interestIncome: 80,
+      tax: 40,
+      interestExpense: 20,
+      currentLeasePayable: 10,
+      currentOtherFinancialLiabilities: 10,
+      nonCurrentLeasePayable: 10,
+      nonCurrentOtherFinancialLiabilities: 10
+    }
+  }
 ];
-
 const inValidData = [
-  [
-    {
-      // Missing companyName
+  {
+    rawData: {
+      // Missing companyName intentionally
       companyID: "MyCompanyID002",
       sector: "Finance",
       financialYear: 2025,
       marketCapital: 200000,
       stockPrice: 10,
+      profit: 1000,
+      EPS: 2,
+      equity: 12000,
+      outstandingShares: 1000,
+      interestIncome: 50,
+      tax: 30,
+      interestExpense: 20,
+      currentLeasePayable: 5,
+      currentOtherFinancialLiabilities: 5,
+      nonCurrentLeasePayable: 5,
+      nonCurrentOtherFinancialLiabilities: 5
     },
-  ],
+    expectedRawData: null,
+    expectedProcessedData: null, 
+    expectedQuantitativeDecision: null, 
+    expectedReport: null 
+  },
+  {
+    rawData: {
+      companyName: "MyCompany3",
+      companyID: "", 
+      sector: "Technology",
+      financialYear: 2025,
+      marketCapital: -50000, 
+      stockPrice: "twenty", 
+      profit: null, 
+      EPS: null,
+      equity: -1000,
+      outstandingShares: 0,
+      interestIncome: "none",
+      tax: -5,
+      interestExpense: null,
+      currentLeasePayable: -10,
+      currentOtherFinancialLiabilities: null,
+      nonCurrentLeasePayable: "ten",
+      nonCurrentOtherFinancialLiabilities: -5
+    },
+    expectedRawData: null,
+    expectedProcessedData: null,
+    expectedQuantitativeDecision: null,
+    expectedReport: null
+  }
 ];
 
 export default { validData, inValidData };
