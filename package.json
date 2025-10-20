@@ -3,6 +3,7 @@
   "dependencies": {
     "express": "^5.1.0",
     "express-validator": "^7.2.1",
+    "mongodb-memory-server": "^10.2.3",
     "mongoose": "^8.16.1"
   },
   "scripts": {

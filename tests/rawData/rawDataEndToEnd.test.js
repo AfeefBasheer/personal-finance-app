@@ -1,22 +1,19 @@
-import rawDataService from "../src/data/service/rawDataService.js";
-import dataService from "../src/data/service/dataService.js";
-import quantitativeDecisionService from "../src/decisionEngine/service/quantitativeDecisionService.js";
-import reportService from "../src/report/service/reportService.js";
+import rawDataService from "../../src/data/service/rawDataService.js";
+import dataService from "../../src/data/service/dataService.js";
+import quantitativeDecisionService from "../../src/decisionEngine/service/quantitativeDecisionService.js";
+import reportService from "../../src/report/service/reportService.js";
 import testData from "./testData.js";
-import database from "../src/database/database.js";
 import mongoose from "mongoose";
-
-import RawData from "../src/data/model/rawDataModel.js";
-import Data from "../src/data/model/dataModel.js";
-import QuantitativeDecision from "../src/decisionEngine/model/quantitativeDecisionModel.js";
-import Report from "../src/report/model/reportModel.js";
-
+import { MongoMemoryServer } from "mongodb-memory-server";
+import RawData from "../../src/data/model/rawDataModel.js";
+import Data from "../../src/data/model/dataModel.js";
+import QuantitativeDecision from "../../src/decisionEngine/model/quantitativeDecisionModel.js";
+import Report from "../../src/report/model/reportModel.js";
 import {
   describe,
   test,
   expect,
   beforeAll,
-  beforeEach,
   afterEach,
   afterAll,
 } from "@jest/globals";
@@ -35,18 +32,16 @@ const validateStoredObject = (storedObj, expectedObj) => {
   expect(new Date(storedObj.updatedAt).toString()).not.toBe("Invalid Date");
 };
 
+let mongoServer;
+
+//connecting to in-memory-mongodb-connection
 beforeAll(async () => {
-  await database();
+  mongoServer = await MongoMemoryServer.create();
+  const uri = mongoServer.getUri();
+  await mongoose.connect(uri);
 });
 
-// Cleanup DB before and after each test
-beforeEach(async () => {
-  await RawData.deleteMany({});
-  await Data.deleteMany({});
-  await QuantitativeDecision.deleteMany({});
-  await Report.deleteMany({});
-});
-
+//cleaning DB before each test
 afterEach(async () => {
   await RawData.deleteMany({});
   await Data.deleteMany({});
@@ -54,12 +49,16 @@ afterEach(async () => {
   await Report.deleteMany({});
 });
 
+//disconnecting from in-memory-mongodb-connection
 afterAll(async () => {
+  await mongoose.connection.dropDatabase();
   await mongoose.connection.close();
+  await mongoServer.stop();
 });
 
+//validTests
 describe("addRawData", () => {
-  test("validTests", async () => {
+  test("addRawData_Successful_with_valid_Data", async () => {
     for (const item of testData.validData) {
       const {
         rawData,
@@ -84,7 +83,7 @@ describe("addRawData", () => {
       const storedReport = await reportService.getReportByCompanyId(
         rawData.companyID
       );
-
+      
       validateStoredObject(storedRawData, expectedRawData);
       validateStoredObject(storedData, expectedProcessedData);
       validateStoredObject(
@@ -95,10 +94,10 @@ describe("addRawData", () => {
     }
   });
 
-  test("invalidTests", async () => {
-    for (const item of testData.inValidData) {
+//Invalid Tests
+  for (const item of testData.inValidData) {
+    test(item.testCaseName, async () => {
       const { rawData } = item;
-
       const result = await rawDataService.addRawData(rawData);
 
       expect(result).toBeUndefined();
@@ -109,6 +108,6 @@ describe("addRawData", () => {
         );
         expect(storedRawData).toBeNull();
       }
-    }
-  });
+    });
+  }
 });
