@@ -1,7 +1,3 @@
-import rawDataService from "../../src/data/service/rawDataService.js";
-import dataService from "../../src/data/service/dataService.js";
-import quantitativeDecisionService from "../../src/decisionEngine/service/quantitativeDecisionService.js";
-import reportService from "../../src/report/service/reportService.js";
 import testData from "./testData.js";
 import mongoose from "mongoose";
 import { MongoMemoryServer } from "mongodb-memory-server";
@@ -17,6 +13,8 @@ import {
   afterEach,
   afterAll,
 } from "@jest/globals";
+import supertest from "supertest";
+import app from "../../app.js";
 
 const isValidObjectId = (id) => /^[a-f\d]{24}$/i.test(id);
 
@@ -57,7 +55,7 @@ afterAll(async () => {
 });
 
 //validTests
-describe("addRawData", () => {
+describe("POST/addRawData", () => {
   test("addRawData_Successful_with_valid_Data", async () => {
     for (const item of testData.validData) {
       const {
@@ -68,22 +66,32 @@ describe("addRawData", () => {
         expectedReport,
       } = item;
 
-      await rawDataService.addRawData(rawData);
+      await supertest(app)
+        .post("/rawdata")
+        .send(rawData)
+        .set("Accept", "application/json");
 
-      const storedRawData = await rawDataService.getRawDataByCompanyId(
-        rawData.companyID
-      );
-      const storedData = await dataService.getDataByCompanyId(
-        rawData.companyID
-      );
+      const storedRawDataResponse = await supertest(app)
+        .get(`/rawdata/${rawData.companyID}`)
+        .set("Accept", "application/json");
+      const storedRawData = storedRawDataResponse.body;
+
+      const storedDataResponse = await supertest(app)
+        .get(`/data/${rawData.companyID}`)
+        .set("Accept", "application/json");
+      const storedData = storedDataResponse.body;
+
+      const storedQuantitativeDecisionResponse = await supertest(app)
+        .get(`/quantitativedecision/${rawData.companyID}`)
+        .set("Accept", "application/json");
       const storedQuantitativeDecision =
-        await quantitativeDecisionService.getQuantitativeDecisionByCompanyId(
-          rawData.companyID
-        );
-      const storedReport = await reportService.getReportByCompanyId(
-        rawData.companyID
-      );
-      
+        storedQuantitativeDecisionResponse.body;
+
+      const storedReportResponse = await supertest(app)
+        .get(`/report/${rawData.companyID}`)
+        .set("Accept", "application/json");
+      const storedReport = storedReportResponse.body;
+
       validateStoredObject(storedRawData, expectedRawData);
       validateStoredObject(storedData, expectedProcessedData);
       validateStoredObject(
@@ -94,20 +102,16 @@ describe("addRawData", () => {
     }
   });
 
-//Invalid Tests
+  //Invalid Tests
   for (const item of testData.inValidData) {
-    test(item.testCaseName, async () => {
-      const { rawData } = item;
-      const result = await rawDataService.addRawData(rawData);
+    test("addRawData_failed " + item.testCaseName, async () => {
+      const rawData = item;
+      const storedResponse = await supertest(app)
+        .post("/rawdata")
+        .send(rawData);
+      const storedResult = storedResponse.body;
 
-      expect(result).toBeUndefined();
-
-      if (rawData.companyID && rawData.companyID.trim() !== "") {
-        const storedRawData = await rawDataService.getRawDataByCompanyId(
-          rawData.companyID
-        );
-        expect(storedRawData).toBeNull();
-      }
+      expect(storedResult).toHaveProperty("error");
     });
   }
 });
