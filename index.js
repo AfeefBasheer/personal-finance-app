@@ -1,18 +1,9 @@
-import express from "express";
-import http from "http";
+import app from "./app.js";
 import database from "./src/database/database.js";
-import appRouter from "./src/router/applicationRouter.js";
 
-const app = express();
 const portNumber = 8080;
 
-http.createServer(app);
-
-database();
-app.use(express.json());
-app.use("/", appRouter);
-
-app.listen(portNumber, (err) => {
-  if (err) console.log("ERROR - " + err);
-  else console.log(`server running on port: ${portNumber}`);
+database();// connecting to DB here
+app.listen(portNumber, () => {
+  console.log(`server running on port: ${portNumber}`);
 });
