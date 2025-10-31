@@ -39,7 +39,7 @@ beforeAll(async () => {
   await mongoose.connect(uri);
 });
 
-//cleaning DB before each test
+//cleaning DB after each test
 afterEach(async () => {
   await RawData.deleteMany({});
   await Data.deleteMany({});
