@@ -1,6 +1,3 @@
-// app.js
-
-//only creating and exporting express.
 import express from "express";
 import appRouter from "./src/router/applicationRouter.js";
 

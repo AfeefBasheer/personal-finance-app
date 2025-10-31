@@ -55,8 +55,8 @@ afterAll(async () => {
 });
 
 //validTests
-describe("POST/addRawData", () => {
-  test("addRawData_Successful_with_valid_Data", async () => {
+describe("POST/rawData", () => {
+  test("addRawData successful with valid data", async () => {
     for (const item of testData.validData) {
       const {
         rawData,

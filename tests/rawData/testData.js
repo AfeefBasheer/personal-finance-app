@@ -161,7 +161,7 @@ const validData = [
 
 const inValidData = [
   {
-    testCaseName: "Missing_company_name",
+    testCaseName: "Missing company name",
 
     rawData: {
       companyID: "MyCompanyID002",
@@ -187,7 +187,7 @@ const inValidData = [
     expectedReport: null,
   },
   {
-    testCaseName: "Empty_company_ID",
+    testCaseName: "Empty company ID",
 
     rawData: {
       companyName: "MyCompany3",
