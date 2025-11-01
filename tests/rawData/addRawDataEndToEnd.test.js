@@ -1,4 +1,4 @@
-import testData from "./testData.js";
+import testData from "./addRawDataTestData.js";
 import mongoose from "mongoose";
 import { MongoMemoryServer } from "mongodb-memory-server";
 import RawData from "../../src/data/model/rawDataModel.js";
