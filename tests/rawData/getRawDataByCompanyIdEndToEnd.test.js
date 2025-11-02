@@ -30,44 +30,45 @@ afterAll(async () => {
 
 // validTests
 describe("POST /rawData", () => {
-  test("getRawData successful with valid data", async () => {
+  test("getRawDataByCompanyId successful with valid data", async () => {
     for (const rawData of testData.validData.rawData) {
       await supertest(app)
         .post("/rawdata")
         .send(rawData)
         .set("Accept", "application/json");
     }
+
     const expectedData = testData.validData.expectedData;
     let i = 0;
     for (const rawData of testData.validData.rawData) {
-      let retreivedRawDataResponse = await supertest(app)
+      const retreivedRawDataResponse = await supertest(app)
         .get(`/rawdata/${rawData.companyID}`)
         .set("Accept", "application/json");
-      let retreivedRawData = retreivedRawDataResponse.body;
+      const retreivedRawData = retreivedRawDataResponse.body;
       testValidation.validateObjects(retreivedRawData, expectedData[i]);
       i++;
     }
   });
+
   for (const inValid of testData.inValidData) {
-  test(inValid.test, async () => {
-    for (const rawData of inValid.rawData) {
-      await supertest(app)
-        .post("/rawdata")
-        .send(rawData)
-        .set("Accept", "application/json");
-    }
+    test(inValid.testCaseName, async () => {
+      for (const rawData of inValid.rawData) {
+        await supertest(app)
+          .post("/rawdata")
+          .send(rawData)
+          .set("Accept", "application/json");
+      }
 
-    let i = 0;
-    for (const rawData of inValid.rawData) {
-      const res = await supertest(app)
-        .get(`/rawdata/${rawData.companyID}`)
-        .set("Accept", "application/json");
+      let i = 0;
+      for (const rawData of inValid.rawData) {
+        const res = await supertest(app)
+          .get(`/rawdata/${rawData.companyID}`)
+          .set("Accept", "application/json");
 
-      const retrieved = res.body;
-      testValidation.validateObjects(retrieved, inValid.expectedData[i]);
-      i++;
-    }
-  });
-}
-
+        const retrieved = res.body;
+        testValidation.validateObjects(retrieved, inValid.expectedData[i]);
+        i++;
+      }
+    });
+  }
 });

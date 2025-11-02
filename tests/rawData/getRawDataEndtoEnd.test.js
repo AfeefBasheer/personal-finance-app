@@ -2,13 +2,7 @@ import testData from "./getRawDataTestData.js";
 import mongoose from "mongoose";
 import { MongoMemoryServer } from "mongodb-memory-server";
 import RawData from "../../src/data/model/rawDataModel.js";
-import {
-  describe,
-  test,
-  beforeAll,
-  afterEach,
-  afterAll,
-} from "@jest/globals";
+import { describe, test, beforeAll, afterEach, afterAll } from "@jest/globals";
 import supertest from "supertest";
 import app from "../../app.js";
 import testValidation from "./testValidation.js";
@@ -39,7 +33,6 @@ describe("POST /rawData", () => {
   test("getRawData successful with valid data", async () => {
     for (const testSet of testData.validData.testCases) {
       const { addData, expectedGetData } = testSet;
-
       for (const rawData of addData) {
         await supertest(app)
           .post("/rawdata")
