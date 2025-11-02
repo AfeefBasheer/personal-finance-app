@@ -28,7 +28,7 @@ afterAll(async () => {
 });
 
 // validTests
-describe("POST /rawData", () => {
+describe("DELETE /rawdata/", () => {
   test("getRawData successful with valid data", async () => {
     for (const testSet of testData.validData.testCases) {
       const { addData, expectedGetData } = testSet;

@@ -29,7 +29,7 @@ afterAll(async () => {
 });
 
 // validTests
-describe("POST /rawData", () => {
+describe("GET /rawData /:companyId", () => {
   test("getRawDataByCompanyId successful with valid data", async () => {
     for (const rawData of testData.validData.rawData) {
       await supertest(app)
