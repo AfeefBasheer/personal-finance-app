@@ -5,31 +5,13 @@ import RawData from "../../src/data/model/rawDataModel.js";
 import {
   describe,
   test,
-  expect,
   beforeAll,
   afterEach,
   afterAll,
 } from "@jest/globals";
 import supertest from "supertest";
 import app from "../../app.js";
-
-const isValidObjectId = (id) => /^[a-f\d]{24}$/i.test(id);
-
-const validateRetrievedObject = (retrievedObject, expectedObject) => {
-  for (const key of Object.keys(expectedObject)) {
-    expect(retrievedObject).toHaveProperty(key);
-  }
-  expect(retrievedObject).toHaveProperty("_id");
-  expect(isValidObjectId(retrievedObject._id.toString())).toBe(true);
-  expect(retrievedObject).toHaveProperty("createdAt");
-  expect(new Date(retrievedObject.createdAt).toString()).not.toBe(
-    "Invalid Date"
-  );
-  expect(retrievedObject).toHaveProperty("updatedAt");
-  expect(new Date(retrievedObject.updatedAt).toString()).not.toBe(
-    "Invalid Date"
-  );
-};
+import testValidation from "./testValidation.js";
 
 let mongoServer;
 
@@ -72,7 +54,7 @@ describe("POST /rawData", () => {
       const retrievedData = retrievedRawDataResponse.body;
 
       for (let i = 0; i < addData.length; i++)
-        validateRetrievedObject(retrievedData[i], expectedGetData[i]);
+        testValidation.validateObjects(retrievedData[i], expectedGetData[i]);
     }
   });
 });

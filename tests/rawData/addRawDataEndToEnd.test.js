@@ -15,20 +15,7 @@ import {
 } from "@jest/globals";
 import supertest from "supertest";
 import app from "../../app.js";
-
-const isValidObjectId = (id) => /^[a-f\d]{24}$/i.test(id);
-
-const validateStoredObject = (storedObj, expectedObj) => {
-  for (const key of Object.keys(expectedObj)) {
-    expect(storedObj).toHaveProperty(key);
-  }
-  expect(storedObj).toHaveProperty("_id");
-  expect(isValidObjectId(storedObj._id.toString())).toBe(true);
-  expect(storedObj).toHaveProperty("createdAt");
-  expect(new Date(storedObj.createdAt).toString()).not.toBe("Invalid Date");
-  expect(storedObj).toHaveProperty("updatedAt");
-  expect(new Date(storedObj.updatedAt).toString()).not.toBe("Invalid Date");
-};
+import testValidation from "./testValidation.js";
 
 let mongoServer;
 
@@ -92,13 +79,13 @@ describe("POST/rawData", () => {
         .set("Accept", "application/json");
       const storedReport = storedReportResponse.body;
 
-      validateStoredObject(storedRawData, expectedRawData);
-      validateStoredObject(storedData, expectedProcessedData);
-      validateStoredObject(
+      testValidation.validateObjects(storedRawData, expectedRawData);
+      testValidation.validateObjects(storedData, expectedProcessedData);
+      testValidation.validateObjects(
         storedQuantitativeDecision,
         expectedQuantitativeDecision
       );
-      validateStoredObject(storedReport, expectedReport);
+      testValidation.validateObjects(storedReport, expectedReport);
     }
   });
 
