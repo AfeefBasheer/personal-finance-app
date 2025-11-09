@@ -1,5 +1,3 @@
-// tests/rawData/deleteRawDataByCompanyIdTestData.js
-
 const validData = [
   {
     companyName: "MyCompany1",
