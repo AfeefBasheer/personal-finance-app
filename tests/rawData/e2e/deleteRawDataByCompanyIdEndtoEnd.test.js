@@ -1,9 +1,9 @@
 import mongoose from "mongoose";
 import { MongoMemoryServer } from "mongodb-memory-server";
 import supertest from "supertest";
-import app from "../../app.js";
-import rawDataModel from "../../src/data/model/rawDataModel.js";
-import testData from "./deleteRawDataByCompanyIdTestData.js";
+import app from "../../../app.js";
+import rawDataModel from "../../../src/data/model/rawDataModel.js";
+import testData from "../testData/deleteRawDataByCompanyIdTestData.js";
 import {
   describe,
   test,

@@ -1,10 +1,10 @@
-import testData from "./addRawDataTestData.js";
+import testData from "../testData/addRawDataTestData.js";
 import mongoose from "mongoose";
 import { MongoMemoryServer } from "mongodb-memory-server";
-import RawData from "../../src/data/model/rawDataModel.js";
-import Data from "../../src/data/model/dataModel.js";
-import QuantitativeDecision from "../../src/decisionEngine/model/quantitativeDecisionModel.js";
-import Report from "../../src/report/model/reportModel.js";
+import RawData from "../../../src/data/model/rawDataModel.js";
+import Data from "../../../src/data/model/dataModel.js";
+import QuantitativeDecision from "../../../src/decisionEngine/model/quantitativeDecisionModel.js";
+import Report from "../../../src/report/model/reportModel.js";
 import {
   describe,
   test,
@@ -14,8 +14,8 @@ import {
   afterAll,
 } from "@jest/globals";
 import supertest from "supertest";
-import app from "../../app.js";
-import testValidation from "./testValidation.js";
+import app from "../../../app.js";
+import testValidation from "../utils/testValidation.js";
 
 let mongoServer;
 

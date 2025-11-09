@@ -1,10 +1,10 @@
-import testData from "./deleteRawDataTestData.js";
+import testData from "../testData/deleteRawDataTestData.js";
 import mongoose from "mongoose";
 import { MongoMemoryServer } from "mongodb-memory-server";
-import RawData from "../../src/data/model/rawDataModel.js";
+import RawData from "../../../src/data/model/rawDataModel.js";
 import { describe, test, beforeAll, afterEach, afterAll } from "@jest/globals";
 import supertest from "supertest";
-import app from "../../app.js";
+import app from "../../../app.js";
 
 let mongoServer;
 
